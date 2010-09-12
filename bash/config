@@ -30,18 +30,18 @@ function __config() {
   PS1="\n"
 
   if [[ $USER == "root" ]]; then
-    PS1="$PS1$underlined${colors[5]}\u$reset"
+    PS1="$PS1$underlined${colors[1]}\u$reset"
   else
     PS1="$PS1${colors[5]}\u$reset"
   fi
 
-  if $REMOTE_LOGIN; then
-    PS1="$PS1$bold@$underlined${colors[2]}\h$reset"
+  if $SSH_REMOTE_LOGIN; then
+    PS1="$PS1$bold@$underlined${colors[3]}\h$reset"
   else
     PS1="$PS1$bold@${colors[2]}\h$reset"
   fi
 
-  PS1="$PS1:${colors[6]}\w$reset\n$bold\$$reset "
+  PS1="$PS1:${colors[6]}\w$reset ${colors[0]}$(vcprompt)$reset\n$bold\$$reset "
 
   # ------------------------------------------------------------------------
   # Bash completion

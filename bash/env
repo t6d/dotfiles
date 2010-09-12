@@ -90,7 +90,8 @@ export LS_COLORS
 # -- Remote login ----------------------------------------------------------
 
 if [[ -n $SSH_CLIENT ]]; then
-  export REMOTE_LOGIN=true
+  SSH_REMOTE_LOGIN=true
 else
-  export REMOTE_LOGIN=false
+  SSH_REMOTE_LOGIN=false
 fi
+export $SSH_REMOTE_LOGIN
