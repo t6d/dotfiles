@@ -1,0 +1,6 @@
+gem: --no-ri
+rdoc: --inline-source --line-numbers --format=html --template=hanna
+verbose: true
+update_sources: true
+sources: 
+- http://gemcutter.org
