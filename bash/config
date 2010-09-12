@@ -1,0 +1,54 @@
+#!/usr/bin/env bash
+
+function __config() {
+
+  # ------------------------------------------------------------------------
+  # Color definitions
+  # ------------------------------------------------------------------------
+
+  # Colors
+  local colors[0]="\[\e[1;30m\]" # black
+  local colors[1]="\[\e[1;31m\]" # red
+  local colors[2]="\[\e[1;32m\]" # green
+  local colors[3]="\[\e[1;33m\]" # yellow
+  local colors[4]="\[\e[1;34m\]" # blue
+  local colors[5]="\[\e[1;35m\]" # magenta
+  local colors[6]="\[\e[1;36m\]" # cyan
+  local colors[7]="\[\e[1;37m\]" # white
+
+  # Text variants
+  local bold="\[\e[1m\]"
+  local underlined="\[\e[4m\]"
+
+  # Reset color
+  local reset="\[\e[0m\]"
+
+  # ------------------------------------------------------------------------
+  # Prompt configuration
+  # ------------------------------------------------------------------------
+
+  PS1="\n"
+
+  if [[ $USER == "root" ]]; then
+    PS1="$PS1$underlined${colors[5]}\u$reset"
+  else
+    PS1="$PS1${colors[5]}\u$reset"
+  fi
+
+  if $REMOTE_LOGIN; then
+    PS1="$PS1$bold@$underlined${colors[2]}\h$reset"
+  else
+    PS1="$PS1$bold@${colors[2]}\h$reset"
+  fi
+
+  PS1="$PS1:${colors[6]}\w$reset\n$bold\$$reset "
+
+  # ------------------------------------------------------------------------
+  # Bash completion
+  # ------------------------------------------------------------------------
+
+  [[ -f /opt/local/etc/bash_completion ]] && \
+    source /opt/local/etc/bash_completion
+}
+
+__config; unset __config
