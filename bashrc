@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
 
-[[ -f $HOME/.bash/config ]]     && source $HOME/.bash/config
-[[ -f $HOME/.bash/aliases ]]    && source $HOME/.bash/aliases
-[[ -f $HOME/.bash/functions ]]  && source $HOME/.bash/functions
+[[ -f ~/.bash/config ]]     && source ~/.bash/config
+[[ -f ~/.bash/aliases ]]    && source ~/.bash/aliases
+[[ -f ~/.bash/functions ]]  && source ~/.bash/functions

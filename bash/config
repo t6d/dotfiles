@@ -7,14 +7,14 @@ function __config() {
   # ------------------------------------------------------------------------
 
   # Colors
-  local colors[0]="\[\e[1;30m\]" # black
-  local colors[1]="\[\e[1;31m\]" # red
-  local colors[2]="\[\e[1;32m\]" # green
-  local colors[3]="\[\e[1;33m\]" # yellow
-  local colors[4]="\[\e[1;34m\]" # blue
-  local colors[5]="\[\e[1;35m\]" # magenta
-  local colors[6]="\[\e[1;36m\]" # cyan
-  local colors[7]="\[\e[1;37m\]" # white
+  local black="\[\e[1;30m\]"    # black
+  local red="\[\e[1;31m\]"      # red
+  local green="\[\e[1;32m\]"    # green
+  local yellow="\[\e[1;33m\]"   # yellow
+  local blue="\[\e[1;34m\]"     # blue
+  local magenta="\[\e[1;35m\]"  # magenta
+  local cyan="\[\e[1;36m\]"     # cyan
+  local white="\[\e[1;37m\]"    # white
 
   # Text variants
   local bold="\[\e[1m\]"
@@ -27,21 +27,32 @@ function __config() {
   # Prompt configuration
   # ------------------------------------------------------------------------
 
-  PS1="\n"
-
+  local username
+  local host
+  local directory
+  local status
+  
   if [[ $USER == "root" ]]; then
-    PS1="$PS1$underlined${colors[1]}\u$reset"
+    username="$red$underlined\u$reset"
   else
-    PS1="$PS1${colors[5]}\u$reset"
+    username="$magenta\u$reset"
   fi
 
-  if $SSH_REMOTE_LOGIN; then
-    PS1="$PS1$bold@$underlined${colors[3]}\h$reset"
+  if ${SSH_REMOTE_LOGIN:=false}; then
+    host="$underlined$yellow\h$reset"
   else
-    PS1="$PS1$bold@${colors[2]}\h$reset"
+    host="$green\h$reset"
   fi
 
-  PS1="$PS1:${colors[6]}\w$reset ${colors[0]}$(vcprompt)$reset\n$bold\$$reset "
+  directory="$cyan\w$reset"
+
+  if which vcprompt > /dev/null; then
+    status="$black\$(vcprompt)$reset"
+  else
+    status=""
+  fi
+
+  PS1="\n$username$bold@$reset$host$bold:$reset$directory $status\n$ "
 
   # ------------------------------------------------------------------------
   # Bash completion
