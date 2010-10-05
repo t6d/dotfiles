@@ -38,7 +38,7 @@ function __config() {
     username="$magenta\u$reset"
   fi
 
-  if ${SSH_REMOTE_LOGIN:=false}; then
+  if ${REMOTE_LOGIN:=false}; then
     host="$underlined$yellow\h$reset"
   else
     host="$green\h$reset"

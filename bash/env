@@ -1,5 +1,15 @@
 #!/usr/bin/env bash
 
+function __is_logged_in_remotely() {
+  local hostname=`who am i | awk -F"[()]" '{print $2}'`
+  
+  if [[ -z $hostname ]] || [[ $hostname == localhost ]]; then
+    return 1
+  else
+    return 0
+  fi
+}
+
 # --------------------------------------------------------------------------
 # Mac specific settings
 # --------------------------------------------------------------------------
@@ -24,6 +34,10 @@ if [[ $(uname) == "Darwin" ]]; then
   # Adobe Air
   [[ -d /Library/Air/current/bin ]] && \
     export PATH=/Library/Air/current/bin:$PATH
+
+  # Rubinius
+  [[ -d /usr/local/rubinius/current/bin ]] && \
+    export PATH=/usr/local/rubinius/current/bin:$PATH
 
   # MacPorts
   if [[ -d /opt/local ]]; then
@@ -90,10 +104,12 @@ export LS_COLORS
 
 # -- Remote login settings -------------------------------------------------
 
-if [[ -z ${SSH_REMOTE_LOGIN-} ]]; then
-  if [[ -n ${SSH_CLIENT-} ]]; then
-    export SSH_REMOTE_LOGIN=true
+if [[ -z ${REMOTE_LOGIN-} ]]; then
+  if __is_logged_in_remotely; then
+    export REMOTE_LOGIN=true
   else
-    export SSH_REMOTE_LOGIN=false
+    export REMOTE_LOGIN=false
   fi
-fi  
+fi
+
+unset __is_logged_in_remotely
