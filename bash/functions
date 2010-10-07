@@ -5,7 +5,7 @@
 #
 # Returns: 0 if the user is the root user,
 #          1 otherwise.
-function is_root() {
+function user_is_root() {
   if [[ `whoami` == 'root' ]]; then
     return 0
   else
@@ -18,7 +18,7 @@ function is_root() {
 #
 # Returns: 0 if the user is logged in from another machine,
 #          1 otherwise.
-function is_logged_in_remotely() {
+function user_is_logged_in_remotely() {
   local remote_host=`who am i | awk -F '[()]' '{print $2}'`
   
   if [[ -z $remote_host ]] || [[ $remote_host == 'localhost' ]]; then

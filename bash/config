@@ -28,13 +28,13 @@ function __configure_prompt() {
   local directory
   local status
   
-  if is_root; then
+  if user_is_root; then
     username="$red$underlined\u$reset"
   else
     username="$magenta\u$reset"
   fi
 
-  if is_logged_in_remotely; then
+  if user_is_logged_in_remotely; then
     host="$underlined$yellow\h$reset"
   else
     host="$green\h$reset"
