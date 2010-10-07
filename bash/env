@@ -1,15 +1,5 @@
 #!/usr/bin/env bash
 
-function __is_logged_in_remotely() {
-  local hostname=`who am i | awk -F"[()]" '{print $2}'`
-  
-  if [[ -z $hostname ]] || [[ $hostname == localhost ]]; then
-    return 1
-  else
-    return 0
-  fi
-}
-
 # --------------------------------------------------------------------------
 # Mac specific settings
 # --------------------------------------------------------------------------
@@ -102,14 +92,3 @@ LS_COLORS=$LS_COLORS:"*.c=01;31:*.cpp=01;31:*.h=01;31:*.m=01;31:*.rb=01;31"
 LS_COLORS=$LS_COLORS:"*.rb=01;31:*.xcodeproj=01;31"
 export LS_COLORS
 
-# -- Remote login settings -------------------------------------------------
-
-if [[ -z ${REMOTE_LOGIN-} ]]; then
-  if __is_logged_in_remotely; then
-    export REMOTE_LOGIN=true
-  else
-    export REMOTE_LOGIN=false
-  fi
-fi
-
-unset __is_logged_in_remotely
