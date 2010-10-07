@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
 
-function __config() {
+# --------------------------------------------------------------------------
+# Prompt configuration
+# --------------------------------------------------------------------------
 
-  # ------------------------------------------------------------------------
-  # Color definitions
-  # ------------------------------------------------------------------------
+function __configure_prompt() {
 
   # Colors
   local black="\[\e[1;30m\]"    # black
@@ -22,10 +22,6 @@ function __config() {
 
   # Reset color
   local reset="\[\e[0m\]"
-
-  # ------------------------------------------------------------------------
-  # Prompt configuration
-  # ------------------------------------------------------------------------
 
   local username
   local host
@@ -53,13 +49,17 @@ function __config() {
   fi
 
   PS1="\n$username$bold@$reset$host$bold:$reset$directory $status\n$ "
-
-  # ------------------------------------------------------------------------
-  # Bash completion
-  # ------------------------------------------------------------------------
-
-  [[ -f /opt/local/etc/bash_completion ]] && \
-    source /opt/local/etc/bash_completion
 }
 
-__config; unset __config
+__configure_prompt; unset __configure_prompt
+
+# --------------------------------------------------------------------------
+# Bash completion
+# --------------------------------------------------------------------------
+
+# Linux/Unix default
+[[ -f /etc/bash_completion ]] && source /etc/bash_completion
+
+# MacPorts
+[[ -f /opt/local/etc/bash_completion ]] && \
+  source /opt/local/etc/bash_completion
