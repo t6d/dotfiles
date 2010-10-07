@@ -1,3 +1,12 @@
+require 'irb/completion'
+require 'rubygems' if RUBY_VERSION < '1.9'
+
+begin
+  require 'irbtools'
+rescue LoadError
+  puts "Warning: irbtools not installed"
+end
+
 def ri(query)
   puts `ri #{query}`
 end
@@ -9,9 +18,6 @@ end
 def desktop
   File.join home, 'Desktop'
 end
-
-require 'irb/completion'
-require 'rubygems'
 
 def benchmark
   if block_given?
