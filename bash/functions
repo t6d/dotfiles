@@ -20,10 +20,37 @@ function user_is_root() {
 #          1 otherwise.
 function user_is_logged_in_remotely() {
   local remote_host=`who am i | awk -F '[()]' '{print $2}'`
-  
+
   if [[ -z $remote_host ]] || [[ $remote_host == 'localhost' ]]; then
     return 1
   else
     return 0
   fi
+}
+
+##
+# Allows to edit, reload and update the dotfiles
+#
+# Params: edit|reload|update
+dotfiles() {
+  local directory=$(dirname $(readlink -f ~/.bashrc))
+
+  case $1 in
+    edit)
+      $EDITOR $directory
+    ;;
+
+    reload)
+      source ~/.bashrc
+    ;;
+
+    update)
+      ( cd $directory; rake update )
+      dotfiles reload
+    ;;
+
+    *)
+      echo "Usage: dotfiles edit|reload|update"
+    ;;
+  esac
 }

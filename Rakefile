@@ -1,5 +1,20 @@
 require 'fileutils'
 
+module GitHelper
+  
+  def git(*args)
+    if not `which git`.strip.empty?
+      command = "git #{args.join(' ')}"
+      
+      puts command
+      system command
+    else
+      raise "Git is not installed"
+    end
+  end
+  
+end
+
 module FileHelper
   include FileUtils
   
@@ -41,6 +56,7 @@ module FileHelper
   
 end
 
+include GitHelper
 include FileHelper
 
 # -- Tasks -----------------------------------------------------------------
@@ -58,4 +74,8 @@ task :install do
     delete(dst)
     link(src, dst)
   end
+end
+
+task :update do
+  git 'pull'
 end
