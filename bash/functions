@@ -31,11 +31,15 @@ function user_is_logged_in_remotely() {
 ##
 # Allows to edit, reload and update the dotfiles
 #
-# Params: edit|reload|update
+# Params: cd|edit|reload|update
 dotfiles() {
   local directory=$(dirname $(readlink -f ~/.bashrc))
 
   case $1 in
+    cd)
+      cd $directory
+    ;;
+
     edit)
       $EDITOR $directory
     ;;
