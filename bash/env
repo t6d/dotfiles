@@ -48,6 +48,11 @@ if [[ $(uname) == "Darwin" ]]; then
     export CPP_INCLUDE_PATH=/usr/local/cuda/include:$CPP_INCLUDE_PATH
   fi
   
+  # Node.js
+  if [[ -d /opt/node.js/current/bin ]]; then
+    export PATH=/opt/node.js/current/bin:$PATH
+  fi
+  
   # -- Misc --------------------------------------------------------------
   
   export EDITOR="mate -w"
