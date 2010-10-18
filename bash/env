@@ -1,83 +1,10 @@
 #!/usr/bin/env bash
 
 # --------------------------------------------------------------------------
-# Mac specific settings
+# System specific settings
 # --------------------------------------------------------------------------
 
-if [[ $(uname) == "Darwin" ]]; then
-  
-  # -- Path settings -----------------------------------------------------
-  
-  # Java
-  [[ -d /Library/Java/Home ]] && export JAVA_HOME=/Library/Java/Home
-
-  # Groovy
-  if [[ -d /Library/Groovy/current ]]; then
-    export GROOVY_HOME=/Library/Groovy/current
-    export PATH=$GROOVY_HOME/bin:$PATH
-  fi
-
-  # Adobe Flex
-  [[ -d /Library/Flex/current/bin ]] && \
-    export PATH=/Library/Flex/current/bin:$PATH
-
-  # Adobe Air
-  [[ -d /Library/Air/current/bin ]] && \
-    export PATH=/Library/Air/current/bin:$PATH
-
-  # Rubinius
-  [[ -d /usr/local/rubinius/current/bin ]] && \
-    export PATH=/usr/local/rubinius/current/bin:$PATH
-
-  # MacPorts
-  if [[ -d /opt/local ]]; then
-    export PATH=/opt/local/bin:/opt/local/sbin:$PATH
-    export MANPATH=/opt/local/share/man:$MANPATH
-    export INFOPATH=/opt/local/share/info:$INFOPATH
-  fi
-
-  # Git
-  [[ -d /opt/local/libexec/git-core ]] && \
-    export PATH=/opt/local/libexec/git-core:$PATH
-
-  # Cuda
-  if [[ -d /usr/local/cuda ]]; then
-    export PATH=/usr/local/cuda/bin:$PATH
-    export DYLD_LIBRARY_PATH=/usr/local/cuda/lib:$DYLD_LIBRARY_PATH
-    export C_INCLUDE_PATH=/usr/local/cuda/include:$C_INCLUDE_PATH
-    export CPP_INCLUDE_PATH=/usr/local/cuda/include:$CPP_INCLUDE_PATH
-  fi
-  
-  # Node.js
-  if [[ -d /opt/node.js/current/bin ]]; then
-    export PATH=/opt/node.js/current/bin:$PATH
-  fi
-  
-  # -- Misc --------------------------------------------------------------
-  
-  export EDITOR="mate -w"
-  
-fi
-
-# --------------------------------------------------------------------------
-# Linux specific settings
-# --------------------------------------------------------------------------
-
-if [[ `uname` == "Linux" ]]; then
-  
-  # -- Path settings -----------------------------------------------------
-  
-  # Cuda
-  if [[ -d /usr/local/cuda ]]; then
-    export PATH=/usr/local/cuda/bin:$PATH
-    export LD_LIBRARY_PATH=/usr/local/cuda/lib64:$LD_LIBRARY_PATH
-  fi
-  
-  # -- Misc --------------------------------------------------------------
-  
-  export EDITOR='vim'
-  
-fi
+[[ -f ~/.bash/env.d/$(uname) ]] && source ~/.bash/env.d/$(uname)
 
 # --------------------------------------------------------------------------
 # Common settings
@@ -85,7 +12,7 @@ fi
 
 # -- Path settings ---------------------------------------------------------
 
-[[ -d $HOME/bin ]] && export PATH=$HOME/bin:$PATH
+[[ -d ~/bin ]] && export PATH=~/bin:$PATH
 
 # -- Directory colors ------------------------------------------------------
 
