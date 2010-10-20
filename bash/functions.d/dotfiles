@@ -30,3 +30,12 @@ dotfiles() {
     ;;
   esac
 }
+
+##
+# Bash completion for dotfiles function
+_dotfiles() {
+  if [[ $COMP_CWORD == 1 ]]; then
+    COMPREPLY=( $(compgen -W "cd edit reload update" -- ${COMP_WORDS[COMP_CWORD]}) )
+  fi
+}
+complete -F _dotfiles dotfiles
