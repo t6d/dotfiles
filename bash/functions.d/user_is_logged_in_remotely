@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+
+##
+# Checks if the user is logged in from another machine.
+#
+# Returns: 0 if the user is logged in from another machine,
+#          1 otherwise.
+user_is_logged_in_remotely() {
+  local remote_host=`who am i | awk -F '[()]' '{print $2}'`
+
+  if [[ -z $remote_host ]] || [[ $remote_host == 'localhost' ]]; then
+    return 1
+  else
+    return 0
+  fi
+}

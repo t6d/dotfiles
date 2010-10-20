@@ -1,0 +1,147 @@
+#!/usr/bin/env bash
+
+##
+# Creates a dump of a local or a remote repository.
+svndump() {
+  local authority=""
+  local autodetermine_repository_location=true
+  local error=false
+  local owner=""
+  local path=""
+  local repository_is_local=false
+  local tmp=""
+  local sudo_is_used=false
+  
+  # -- Nested function defintions ----------------------------------------
+  
+  __svndump_usage() {
+    cat >&2 <<EOF
+Usage: svndump [options] [user@host:]/path/to/repository
+Available options:
+  -l            Repository is on this machine
+  -r            Repository is on a remote machine
+  -u USERNAME   Repository owner
+
+If whether the option -l nor the option -r is specified, svndump tries to
+determine automatically whether the repository is on this machine or on an
+remote machine.
+EOF
+  }
+    
+  __svndump_parse_arguments() {
+    reset_getopts
+    
+    # Parse options
+    while getopts ":hlru:" OPTNAME; do
+      case $OPTNAME in
+        h)
+          error=true
+          ;;
+        l)
+          autodetermine_repository_location=false
+          repository_is_local=true
+          ;;
+        r)
+          autodetermine_repository_location=false
+          repository_is_local=false
+          ;;
+        u)
+          owner=$OPTARG
+          sudo_is_used=true
+          ;;
+        ?)
+          echo "Unknown option" >&2
+          echo >&2
+          error=true
+          ;;
+      esac
+    done
+    
+    # Exit if an error occured
+    if $error; then
+      return 1
+    fi
+
+    # Discard already parsed options
+    shift $(($OPTIND - 1))
+
+    # Check if a repository was given
+    if [[ -z $1 ]]; then
+      echo "No repository given" >&2
+      echo >&2
+      return 1
+    fi
+
+    if $autodetermine_repository_location; then
+      if [[ -d $1 ]]; then
+        repository_is_local=true
+      else
+        repository_is_local=false
+      fi
+    fi
+
+    # Process given remote repository (split in authority and path)
+    if ! $repository_is_local; then
+      if [[ ! $1 =~ ':' ]]; then
+        echo "Invalid remote repository given" >&2
+        echo >&2
+        return 1
+      fi
+
+      authority=${1%:*}
+      path=${1#*:}
+    else
+      path=$1
+    fi
+
+    reset_getopts
+    return 0
+  }
+  
+  __svndump_create_dump() {
+    local command="svnadmin dump -q $path"
+    
+    if $sudo_is_used; then
+      command="sudo -p 'sudo password: ' -u $owner $command"
+    fi
+    
+    if ! $repository_is_local; then
+      if $sudo_is_used; then
+        ssh -q -t $authority "$command"
+      else
+        ssh -q $authority "$command"
+      fi
+    else
+      $command
+    fi
+    
+    return $?
+  }
+  
+  # -- End of nested function definition ---------------------------------
+  
+  if __svndump_parse_arguments "$@"; then
+    tmp=$(mktemp)
+    
+    if __svndump_create_dump > $tmp; then
+      cat $tmp
+    else
+      echo "SVN dump failed" >&2
+    fi
+    
+    rm $tmp
+  else
+    __svndump_usage
+    error=true
+  fi
+  
+  unset __svndump_create_backup
+  unset __svndump_parse_arguments
+  unset __svndump_usage
+  
+  if $error; then
+    return 1
+  else
+    return 0
+  fi
+}

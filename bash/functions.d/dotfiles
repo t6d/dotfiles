@@ -1,0 +1,32 @@
+#!/usr/bin/env bash
+
+##
+# Allows to edit, reload and update the dotfiles
+#
+# Params: cd|edit|reload|update
+dotfiles() {
+  local directory=$(dirname $(readlink -f ~/.bashrc))
+
+  case $1 in
+    cd)
+      cd $directory
+    ;;
+
+    edit)
+      $EDITOR $directory
+    ;;
+
+    reload)
+      source ~/.bashrc
+    ;;
+
+    update)
+      ( cd $directory; rake update )
+      dotfiles reload
+    ;;
+
+    *)
+      echo "Usage: dotfiles cd|edit|reload|update"
+    ;;
+  esac
+}

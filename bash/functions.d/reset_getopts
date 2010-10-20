@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+##
+# Unsets OPTIND and OPTARG
+reset_getopts() {
+  unset OPTIND
+  unset OPTARG
+  unset OPTNAME
+}
