@@ -34,8 +34,11 @@ dotfiles() {
 ##
 # Bash completion for dotfiles function
 _dotfiles() {
-  if [[ $COMP_CWORD == 1 ]]; then
-    COMPREPLY=( $(compgen -W "cd edit reload update" -- ${COMP_WORDS[COMP_CWORD]}) )
-  fi
+  local cur cword
+  _get_comp_words_by_ref cur cword
+  
+  [[ $cword > 1 ]] && return 0
+  
+  COMPREPLY=( $(compgen -W "cd edit reload update" -- $cur) )
 }
 complete -F _dotfiles dotfiles
