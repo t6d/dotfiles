@@ -30,7 +30,7 @@
 #
 #   RELEASE: 1.1
 
-if ! type -t _get_comp_words_by_ref; then
+if ! type -t _get_comp_words_by_ref &> /dev/null; then
   # Assign variable one scope above the caller
   # Usage: local "$1" && _upvar $1 "value(s)"
   # Param: $1  Variable name to assign value to

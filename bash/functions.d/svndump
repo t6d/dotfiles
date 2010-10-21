@@ -3,6 +3,8 @@
 ##
 # Creates a dump of a local or a remote repository.
 svndump() {
+  local OPTIND=1
+  
   local authority=""
   local autodetermine_repository_location=true
   local error=false
@@ -29,8 +31,6 @@ EOF
   }
     
   __svndump_parse_arguments() {
-    reset_getopts
-    
     # Parse options
     while getopts ":hlru:" OPTNAME; do
       case $OPTNAME in
@@ -94,7 +94,6 @@ EOF
       path=$1
     fi
 
-    reset_getopts
     return 0
   }
   
