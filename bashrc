@@ -3,3 +3,5 @@
 [[ -f ~/.bash/functions ]]  && source ~/.bash/functions
 [[ -f ~/.bash/aliases ]]    && source ~/.bash/aliases
 [[ -f ~/.bash/config ]]     && source ~/.bash/config
+
+[[ -f ~/.localrc ]] && source ~/.localrc
