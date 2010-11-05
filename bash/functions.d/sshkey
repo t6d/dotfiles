@@ -1,0 +1,26 @@
+#!/usr/bin/env bash
+
+sshkey() {
+  __sshkey_usage() {
+    echo "Usage: sshkey generate|copy [remote-host]"
+  }
+  
+  local command=$1; shift
+  
+  case $command in
+    generate)
+      ssh-keygen $@
+    ;;
+    copy)
+      cat ~/.ssh/id_rsa.pub | \
+      ssh $1 "[[ ! -d ~/.ssh ]] && mkdir ~/.ssh; cat >> ~/.ssh/authorized_keys2"
+    ;;
+    *)
+      __sshkey_usage
+      return 1
+    ;;
+  esac
+  
+  unset __sshkey_usage
+  return 0
+}
