@@ -17,7 +17,7 @@ dotfiles() {
     ;;
 
     reload)
-      source ~/.bashrc
+      source ~/.bash_profile
     ;;
 
     update)

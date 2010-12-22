@@ -1,18 +1,24 @@
 #!/usr/bin/env bash
 
 # --------------------------------------------------------------------------
-# System specific settings
-# --------------------------------------------------------------------------
-
-[[ -f ~/.bash/env.d/$(uname) ]] && source ~/.bash/env.d/$(uname)
-
-# --------------------------------------------------------------------------
 # Common settings
 # --------------------------------------------------------------------------
 
 # -- Path settings ---------------------------------------------------------
 
-[[ -d ~/bin ]] && export PATH=~/bin:$PATH
+PATH=/bin
+
+[[ -d /sbin ]]            && PATH=/sbin:$PATH
+
+[[ -d /usr/bin ]]         && PATH=/usr/bin:$PATH
+[[ -d /usr/sbin ]]        && PATH=/usr/sbin:$PATH
+
+[[ -d /usr/local/bin ]]   && PATH=/usr/local/bin:$PATH
+[[ -d /usr/local/sbin ]]  && PATH=/usr/local/sbin:$PATH
+
+[[ -d ~/bin ]]            && PATH=~/bin:$PATH
+
+export PATH
 
 # -- Directory colors ------------------------------------------------------
 
@@ -24,3 +30,8 @@ LS_COLORS=$LS_COLORS:"*.c=01;31:*.cpp=01;31:*.h=01;31:*.m=01;31:*.rb=01;31"
 LS_COLORS=$LS_COLORS:"*.rb=01;31:*.xcodeproj=01;31"
 export LS_COLORS
 
+# --------------------------------------------------------------------------
+# System specific settings
+# --------------------------------------------------------------------------
+
+[[ -f ~/.bash/env.d/$(uname) ]] && source ~/.bash/env.d/$(uname)
