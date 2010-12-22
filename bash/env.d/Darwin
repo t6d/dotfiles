@@ -15,6 +15,15 @@ MANPATH=
 [[ -d /Library/Java/Home ]] && \
   JAVA_HOME=/Library/Java/Home
 
+# TeX
+[[ -d /usr/texbin ]] && \
+  PATH=/usr/texbin:$PATH
+
+# X11
+[[ -d /usr/X11/bin ]] && \
+  PATH=/usr/X11/bin:$PATH
+
+
 # Groovy
 if [[ -d /Library/Groovy/current ]]; then
   GROOVY_HOME=/Library/Groovy/current
