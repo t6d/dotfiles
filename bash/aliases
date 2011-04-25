@@ -18,6 +18,7 @@ alias gcav="git commit -v -a"
 alias gcv="git commit -v"
 alias gc="git commit"
 alias gco="git checkout"
+alias gcob="git checkout -b $1"
 alias gd="git diff --color"
 alias gp="git push"
 alias gl="git pull"
@@ -40,3 +41,4 @@ alias lla='ls -Ahl'
 
 alias watch="tail -f -n 0"
 alias js="java org.mozilla.javascript.tools.shell.Main" # Rhino
+alias textmate-reload-bundles="osascript -e 'tell app \"TextMate\" to reload bundles'"

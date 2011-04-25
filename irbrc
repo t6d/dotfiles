@@ -1,4 +1,5 @@
 require 'irb/completion'
+require 'pathname'
 require 'rubygems' if RUBY_VERSION < '1.9'
 
 begin
@@ -11,12 +12,12 @@ def ri(query)
   puts `ri #{query}`
 end
 
-def home
-  ENV['HOME']
+def home(path = '')
+  Pathname(ENV['HOME']).join(Pathname(path))
 end
 
-def desktop
-  File.join home, 'Desktop'
+def desktop(path = '')
+  home("Desktop").join(Pathname(path))
 end
 
 def benchmark

@@ -23,11 +23,15 @@ MANPATH=
 [[ -d /usr/X11/bin ]] && \
   PATH=/usr/X11/bin:$PATH
 
-
 # Groovy
 if [[ -d /Library/Groovy/current ]]; then
   GROOVY_HOME=/Library/Groovy/current
   PATH=$GROOVY_HOME/bin:$PATH
+fi
+
+if [[ -d /Library/Scala/current ]]; then
+  SCALA_HOME=/Library/Scala/current
+  PATH=$SCALA_HOME/bin:$PATH
 fi
 
 # Adobe Flex
