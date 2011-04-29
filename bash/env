@@ -30,6 +30,11 @@ LS_COLORS=$LS_COLORS:"*.c=01;31:*.cpp=01;31:*.h=01;31:*.m=01;31:*.rb=01;31"
 LS_COLORS=$LS_COLORS:"*.rb=01;31:*.xcodeproj=01;31"
 export LS_COLORS
 
+# -- Word-wise erasing -----------------------------------------------------
+
+stty werase undef
+bind '"\C-w":backward-kill-word'
+
 # --------------------------------------------------------------------------
 # System specific settings
 # --------------------------------------------------------------------------
