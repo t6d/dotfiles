@@ -35,6 +35,13 @@ export LS_COLORS
 stty werase undef
 bind '"\C-w":backward-kill-word'
 
+# -- RVM -------------------------------------------------------------------
+
+if [[ -s "/usr/local/rvm/scripts/rvm" ]]; then
+  source "/usr/local/rvm/scripts/rvm"
+  rvm reload
+fi
+
 # --------------------------------------------------------------------------
 # System specific settings
 # --------------------------------------------------------------------------
