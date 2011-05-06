@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+
+spell_checking_language() {
+  change_spell_server_language() {
+    echo defaults write "Apple Global Domain" NSPreferredSpellServerLanguage $1
+    defaults write "Apple Global Domain" NSPreferredSpellServerLanguage $1
+  }
+  
+  case $1 in
+    german)
+      change_spell_server_language de_DE
+    ;;
+    english)
+      change_spell_server_language en_US
+    ;;
+  esac
+  
+  unset change_spell_server_language
+}

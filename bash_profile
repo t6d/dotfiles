@@ -4,3 +4,4 @@
 [[ -f ~/.local_profile ]] && source ~/.local_profile
 
 [[ -f ~/.bashrc ]]        && source ~/.bashrc
+

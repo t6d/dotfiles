@@ -29,6 +29,7 @@ if [[ -d /Library/Groovy/current ]]; then
   PATH=$GROOVY_HOME/bin:$PATH
 fi
 
+# Scala
 if [[ -d /Library/Scala/current ]]; then
   SCALA_HOME=/Library/Scala/current
   PATH=$SCALA_HOME/bin:$PATH
