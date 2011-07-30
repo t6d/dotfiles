@@ -5,15 +5,23 @@
 #
 # Params: cd|edit|reload|update
 dotfiles() {
-  local directory=$(dirname $(readlink -f ~/.bashrc))
+  local local_dotfiles
+  local global_dotfiles
+  
+  if readlink ~/.localrc > /dev/null; then
+    local_dotfiles=$(dirname $(readlink ~/.localrc))
+  fi
+  
+  global_dotfiles=$(dirname $(readlink ~/.bashrc))
 
   case $1 in
     cd)
-      cd $directory
+      cd $global_dotfiles
     ;;
 
     edit)
-      $EDITOR $directory
+      echo $EDITOR $global_dotfiles $local_dotfiles
+      $EDITOR $global_dotfiles $local_dotfiles
     ;;
 
     reload)
@@ -21,7 +29,7 @@ dotfiles() {
     ;;
 
     update)
-      ( cd $directory; rake update )
+      ( cd $global_dotfiles; rake update )
       dotfiles reload
     ;;
 
