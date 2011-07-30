@@ -35,10 +35,3 @@ alias ll='ls -hl'
 alias la='ls -Ah'
 alias lla='ls -Ahl'
 
-# --------------------------------------------------------------------------
-# Misc
-# --------------------------------------------------------------------------
-
-alias watch="tail -f -n 0"
-alias js="java org.mozilla.javascript.tools.shell.Main" # Rhino
-alias textmate-reload-bundles="osascript -e 'tell app \"TextMate\" to reload bundles'"
