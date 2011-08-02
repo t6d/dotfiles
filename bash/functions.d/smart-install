@@ -1,0 +1,37 @@
+#!/usr/bin/env bash
+
+##
+# Allows to edit, reload and update the dotfiles
+#
+# Params: cd|edit|reload|update
+smart-install() {
+  case $1 in
+    brew|homebrew)
+      /usr/bin/ruby -e "$(curl -fsSL https://raw.github.com/gist/323731)"
+    ;;
+    
+    pow)
+      curl get.pow.cx | sh
+    ;;
+    
+    rvm)
+      bash < <(curl -s https://rvm.beginrescueend.com/install/rvm)
+    ;;
+
+    *)
+      echo "Usage: smart-install homebrew|pow|rvm"
+    ;;
+  esac
+}
+
+##
+# Bash completion for dotfiles function
+_smart-install() {
+  local cur cword
+  _get_comp_words_by_ref cur cword
+  
+  [[ $cword > 1 ]] && return 0
+  
+  COMPREPLY=( $(compgen -W "brew pow rvm" -- $cur) )
+}
+complete -F _smart-install smart-install

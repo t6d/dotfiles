@@ -35,3 +35,9 @@ alias ll='ls -hl'
 alias la='ls -Ah'
 alias lla='ls -Ahl'
 
+# --------------------------------------------------------------------------
+# pow
+# --------------------------------------------------------------------------
+
+alias pow-stop="launchctl stop cx.pow.powd"
+alias pow-start="launchctl start cx.pow.powd"

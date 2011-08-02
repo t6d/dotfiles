@@ -69,3 +69,8 @@ __configure_prompt; unset __configure_prompt
 # MacPorts
 [[ -f /opt/local/etc/bash_completion ]] && \
   source /opt/local/etc/bash_completion
+
+# Homebrew
+if [[ -x `which brew` && -f `brew --prefix`/etc/bash_completion ]]; then
+  source `brew --prefix`/etc/bash_completion
+fi

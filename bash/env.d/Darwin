@@ -4,10 +4,7 @@
 
 CPP_INCLUDE_PATH=
 C_INCLUDE_PATH=
-DYLD_LIBRARY_PATH=
 EDITOR=
-INFOPATH=
-MANPATH=
 
 # -- Set environment variables ---------------------------------------------
 
@@ -43,29 +40,6 @@ fi
 [[ -d /Library/Air/current/bin ]] && \
   PATH=/Library/Air/current/bin:$PATH
 
-# Rubinius
-[[ -d /usr/local/rubinius/current/bin ]] && \
-  PATH=/usr/local/rubinius/current/bin:$PATH
-
-# MacPorts
-if [[ -d /opt/local ]]; then
-  PATH=/opt/local/sbin:/opt/local/bin:$PATH
-  MANPATH=/opt/local/share/man:$MANPATH
-  INFOPATH=/opt/local/share/info:$INFOPATH
-fi
-
-# Git
-[[ -d /opt/local/libexec/git-core ]] && \
-  PATH=/opt/local/libexec/git-core:$PATH
-
-# Cuda
-if [[ -d /usr/local/cuda ]]; then
-  PATH=/usr/local/cuda/bin:$PATH
-  DYLD_LIBRARY_PATH=/usr/local/cuda/lib:$DYLD_LIBRARY_PATH
-  C_INCLUDE_PATH=/usr/local/cuda/include:$C_INCLUDE_PATH
-  CPP_INCLUDE_PATH=/usr/local/cuda/include:$CPP_INCLUDE_PATH
-fi
-
 # Node.js
 if [[ -d /opt/node.js/current/bin ]]; then
   PATH=/opt/node.js/current/bin:$PATH
@@ -82,7 +56,10 @@ fi
 
 export CPP_INCLUDE_PATH
 export C_INCLUDE_PATH
-export DYLD_LIBRARY_PATH
 export EDITOR
-export INFOPATH
-export MANPATH
+
+# -- Load RVM --------------------------------------------------------------
+
+# RVM
+[[ -s "/usr/local/rvm/scripts/rvm" ]] && \
+  source "/usr/local/rvm/scripts/rvm"
