@@ -30,3 +30,7 @@ def benchmark
     raise RuntimeError, "No block given", nil
   end
 end
+
+def tower
+  system "open -a Tower '#{Dir.pwd}'"
+end
