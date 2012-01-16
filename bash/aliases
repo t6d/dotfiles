@@ -12,16 +12,6 @@ alias cd.="cd ..; cd -"
 # git, svn, etc.
 # --------------------------------------------------------------------------
 
-# Use GNU ls if present
-if which gls > /dev/null; then
-  alias ls="gls --color=auto"
-fi
-
-# Use GNU find if present
-if which gfind > /dev/null; then
-  alias find="gfind"
-fi
-
 alias g="git"
 alias ga="git add"
 alias gai="git add -i"
