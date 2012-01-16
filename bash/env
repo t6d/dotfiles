@@ -37,9 +37,14 @@ bind '"\C-w":backward-kill-word'
 
 # -- RVM -------------------------------------------------------------------
 
-if [[ -s "/usr/local/rvm/scripts/rvm" ]]; then
+if [[ -s "$HOME/.rvm/scripts/rvm" ]]; then
+  source "$HOME/.rvm/scripts/rvm"
+  rvm reload > /dev/null
+elif [[ -s "/usr/local/rvm/scripts/rvm" ]]; then
   source "/usr/local/rvm/scripts/rvm"
-  rvm reload
+  rvm reload > /dev/null
+else
+  echo "RVM not found!"
 fi
 
 # --------------------------------------------------------------------------
