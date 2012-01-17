@@ -47,6 +47,8 @@ else
   echo "RVM not found!"
 fi
 
+[[ -r $rvm_path/scripts/completion ]] && . $rvm_path/scripts/completion
+
 # --------------------------------------------------------------------------
 # System specific settings
 # --------------------------------------------------------------------------
