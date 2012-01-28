@@ -27,6 +27,7 @@ function __configure_prompt() {
   local host
   local directory
   local status
+  local rvm
   
   if user_is_root; then
     username="$red$underlined\u$reset"
