@@ -38,12 +38,4 @@ if [[ -d /Applications/TextMate.app ]]; then
   EDITOR="mate -w"
 else
   EDITOR="vim"
-fi
-
-unset __setup_path
-
-# -- Export environment variables ------------------------------------------
-
-export CPP_INCLUDE_PATH
-export C_INCLUDE_PATH
-export EDITOR
+fi; export EDITOR
