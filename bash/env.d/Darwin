@@ -4,7 +4,7 @@
 
 # Java
 [[ -d /Library/Java/Home ]] && \
-  JAVA_HOME=/Library/Java/Home
+  export JAVA_HOME=/Library/Java/Home
 
 # TeX
 [[ -d /usr/texbin ]] && \
@@ -16,19 +16,19 @@
 
 # Groovy
 if [[ -d /Library/Groovy/current ]]; then
-  GROOVY_HOME=/Library/Groovy/current
+  export GROOVY_HOME=/Library/Groovy/current
   __setup_path $GROOVY_HOME/bin
 fi
 
 # Scala
 if [[ -d /Library/Scala/current ]]; then
-  SCALA_HOME=/Library/Scala/current
+  export SCALA_HOME=/Library/Scala/current
   __setup_path $SCALA_HOME/bin
 fi
 
 # Node.js
-[[ -d /opt/node.js/current/bin ]] && \
-  __setup_path /opt/node.js/current/bin
+[[ -d /usr/local/lib/node_modules ]] && \
+  export NODE_PATH=/usr/local/lib/node_modules
 
 
 # -- Editor settings -------------------------------------------------------
