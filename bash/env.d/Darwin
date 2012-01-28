@@ -1,12 +1,6 @@
 #!/usr/bin/env bash
 
-# -- Reset environment variables -------------------------------------------
-
-CPP_INCLUDE_PATH=
-C_INCLUDE_PATH=
-EDITOR=
-
-# -- Set environment variables ---------------------------------------------
+# -- Path settings ---------------------------------------------------------
 
 # Java
 [[ -d /Library/Java/Home ]] && \
@@ -14,36 +8,30 @@ EDITOR=
 
 # TeX
 [[ -d /usr/texbin ]] && \
-  PATH=/usr/texbin:$PATH
+  __setup_path /usr/texbin
 
 # X11
 [[ -d /usr/X11/bin ]] && \
-  PATH=/usr/X11/bin:$PATH
+  __setup_path /usr/X11/bin
 
 # Groovy
 if [[ -d /Library/Groovy/current ]]; then
   GROOVY_HOME=/Library/Groovy/current
-  PATH=$GROOVY_HOME/bin:$PATH
+  __setup_path $GROOVY_HOME/bin
 fi
 
 # Scala
 if [[ -d /Library/Scala/current ]]; then
   SCALA_HOME=/Library/Scala/current
-  PATH=$SCALA_HOME/bin:$PATH
+  __setup_path $SCALA_HOME/bin
 fi
-
-# Adobe Flex
-[[ -d /Library/Flex/current/bin ]] && \
-  PATH=/Library/Flex/current/bin:$PATH
-
-# Adobe Air
-[[ -d /Library/Air/current/bin ]] && \
-  PATH=/Library/Air/current/bin:$PATH
 
 # Node.js
-if [[ -d /opt/node.js/current/bin ]]; then
-  PATH=/opt/node.js/current/bin:$PATH
-fi
+[[ -d /opt/node.js/current/bin ]] && \
+  __setup_path /opt/node.js/current/bin
+
+
+# -- Editor settings -------------------------------------------------------
 
 # Textmate
 if [[ -d /Applications/TextMate.app ]]; then
@@ -52,14 +40,10 @@ else
   EDITOR="vim"
 fi
 
+unset __setup_path
+
 # -- Export environment variables ------------------------------------------
 
 export CPP_INCLUDE_PATH
 export C_INCLUDE_PATH
 export EDITOR
-
-# -- Load RVM --------------------------------------------------------------
-
-# RVM
-[[ -s "/usr/local/rvm/scripts/rvm" ]] && \
-  source "/usr/local/rvm/scripts/rvm"

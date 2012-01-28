@@ -1,24 +1,35 @@
 #!/usr/bin/env bash
 
 # --------------------------------------------------------------------------
+# Helpers
+# --------------------------------------------------------------------------
+
+function __setup_path() {
+  local pattern="^|(.*:)$1(:.*)|$"
+  if [[ -n $1 && -d $1 && ! $PATH =~ $pattern ]]; then
+    PATH=$1:$PATH
+  fi
+}
+
+# --------------------------------------------------------------------------
 # Common settings
 # --------------------------------------------------------------------------
 
+# -- RVM -------------------------------------------------------------------
+
+if [[ -s "$HOME/.rvm/scripts/rvm" ]]; then
+  source "$HOME/.rvm/scripts/rvm"
+elif [[ -s "/usr/local/rvm/scripts/rvm" ]]; then
+  source "/usr/local/rvm/scripts/rvm"
+else
+  echo "RVM not found!"
+fi
+
+[[ -r $rvm_path/scripts/completion ]] && . $rvm_path/scripts/completion
+
 # -- Path settings ---------------------------------------------------------
 
-PATH=/bin
-
-[[ -d /sbin ]]            && PATH=/sbin:$PATH
-
-[[ -d /usr/bin ]]         && PATH=/usr/bin:$PATH
-[[ -d /usr/sbin ]]        && PATH=/usr/sbin:$PATH
-
-[[ -d /usr/local/bin ]]   && PATH=/usr/local/bin:$PATH
-[[ -d /usr/local/sbin ]]  && PATH=/usr/local/sbin:$PATH
-
-[[ -d ~/bin ]]            && PATH=~/bin:$PATH
-
-export PATH
+__setup_path $HOME/bin
 
 # -- Directory colors ------------------------------------------------------
 
@@ -35,22 +46,14 @@ export LS_COLORS
 stty werase undef
 bind '"\C-w":backward-kill-word'
 
-# -- RVM -------------------------------------------------------------------
-
-if [[ -s "$HOME/.rvm/scripts/rvm" ]]; then
-  source "$HOME/.rvm/scripts/rvm"
-  rvm reload > /dev/null
-elif [[ -s "/usr/local/rvm/scripts/rvm" ]]; then
-  source "/usr/local/rvm/scripts/rvm"
-  rvm reload > /dev/null
-else
-  echo "RVM not found!"
-fi
-
-[[ -r $rvm_path/scripts/completion ]] && . $rvm_path/scripts/completion
-
 # --------------------------------------------------------------------------
 # System specific settings
 # --------------------------------------------------------------------------
 
 [[ -f ~/.bash/env.d/$(uname) ]] && source ~/.bash/env.d/$(uname)
+
+# --------------------------------------------------------------------------
+# Tear down
+# --------------------------------------------------------------------------
+
+unset __setup_path
