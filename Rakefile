@@ -73,19 +73,21 @@ task :default => :install
 
 desc "Install all dotfiles"
 task :install do
-  files = Dir.glob(File.join(File.dirname(__FILE__), '*')).map do |src|
-    next if ignore?(src)
+  Dir.chdir(Dir.home) do
+    files = Dir.glob(File.join(File.dirname(__FILE__), '*')).map do |src|
+      next if ignore?(src)
     
-    [
-      Pathname.new(File.expand_path(src)).relative_path_from(Pathname.new(Dir.home)),
-      File.join(Dir.home, ".#{File.basename(src)}")
-    ]
-  end
+      [
+        Pathname.new(src).relative_path_from(Pathname.new(Dir.home)),
+        File.join(Dir.home, ".#{File.basename(src)}")
+      ]
+    end
   
-  files.each do |src, dst|
-    backup(dst)
-    delete(dst)
-    link(src, dst)
+    files.each do |src, dst|
+      backup(dst)
+      delete(dst)
+      link(src, dst)
+    end
   end
 end
 
