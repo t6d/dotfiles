@@ -11,18 +11,28 @@ function __setup_path() {
   fi
 }
 
+function __rvm_is_loaded() {
+  if which rvm > /dev/null 2>&1; then
+    true
+  else
+    false
+  fi
+}
+
 # --------------------------------------------------------------------------
 # Common settings
 # --------------------------------------------------------------------------
 
 # -- RVM -------------------------------------------------------------------
 
-if [[ -s "$HOME/.rvm/scripts/rvm" ]]; then
-  source "$HOME/.rvm/scripts/rvm"
-elif [[ -s "/usr/local/rvm/scripts/rvm" ]]; then
-  source "/usr/local/rvm/scripts/rvm"
-else
-  echo "RVM not found!"
+if ! __rvm_is_loaded; then
+  if [[ -s "$HOME/.rvm/scripts/rvm" ]]; then
+    source "$HOME/.rvm/scripts/rvm"
+  elif [[ -s "/usr/local/rvm/scripts/rvm" ]]; then
+    source "/usr/local/rvm/scripts/rvm"
+  else
+    echo "RVM not found!"
+  fi
 fi
 
 [[ -r $rvm_path/scripts/completion ]] && . $rvm_path/scripts/completion
@@ -57,3 +67,4 @@ bind '"\C-w":backward-kill-word'
 # --------------------------------------------------------------------------
 
 unset __setup_path
+unset __rvm_is_loaded
