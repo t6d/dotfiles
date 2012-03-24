@@ -1,4 +1,5 @@
 require 'fileutils'
+require 'pathname'
 
 module GitHelper
   
@@ -19,12 +20,16 @@ module FileHelper
   include FileUtils
   
   def backup(file)
+    file &&= file.to_s
+    
     if File.exists?(file) and not File.symlink?(file)
       cp_r file, "#{file}.#{today}"
     end
   end
   
   def delete(file)
+    file &&= file.to_s
+    
     if File.symlink?(file)
       rm file
     elsif File.exists?(file)
@@ -37,6 +42,9 @@ module FileHelper
   end
   
   def link(source, destination)
+    source      &&= source.to_s
+    destination &&= destination.to_s
+    
     ln_s source, destination
   end
   
@@ -65,11 +73,16 @@ task :default => :install
 
 desc "Install all dotfiles"
 task :install do
-  Dir.glob(File.join(File.dirname(__FILE__), '*')) do |src|
-    dst = File.expand_path(File.join('~', ".#{File.basename(src)}"))
-    
+  files = Dir.glob(File.join(File.dirname(__FILE__), '*')).map do |src|
     next if ignore?(src)
     
+    [
+      Pathname.new(File.expand_path(src)).relative_path_from(Pathname.new(Dir.home)),
+      File.join(Dir.home, ".#{File.basename(src)}")
+    ]
+  end
+  
+  files.each do |src, dst|
     backup(dst)
     delete(dst)
     link(src, dst)
