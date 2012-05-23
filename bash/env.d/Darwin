@@ -2,6 +2,12 @@
 
 # -- Path settings ---------------------------------------------------------
 
+# Remove /usr/local/bin from PATH and position it BEFORE /usr/bin
+PATH=${PATH/"/usr/local/bin"/}
+PATH=${PATH/::/}
+PATH=/usr/local/bin:$PATH
+export PATH
+
 # Java
 [[ -d /Library/Java/Home ]] && \
   export JAVA_HOME=/Library/Java/Home
