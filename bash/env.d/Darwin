@@ -3,10 +3,8 @@
 # -- Path settings ---------------------------------------------------------
 
 # Remove /usr/local/bin from PATH and position it BEFORE /usr/bin
-PATH=${PATH/"/usr/local/bin"/}
-PATH=${PATH/::/}
-PATH=/usr/local/bin:$PATH
-export PATH
+__remove_path /usr/local/bin
+__add_path /usr/local/bin
 
 # Java
 [[ -d /Library/Java/Home ]] && \
@@ -14,22 +12,22 @@ export PATH
 
 # TeX
 [[ -d /usr/texbin ]] && \
-  __setup_path /usr/texbin
+  __add_path /usr/texbin
 
 # X11
 [[ -d /usr/X11/bin ]] && \
-  __setup_path /usr/X11/bin
+  __add_path /usr/X11/bin
 
 # Groovy
 if [[ -d /Library/Groovy/current ]]; then
   export GROOVY_HOME=/Library/Groovy/current
-  __setup_path $GROOVY_HOME/bin
+  __add_path $GROOVY_HOME/bin
 fi
 
 # Scala
 if [[ -d /Library/Scala/current ]]; then
   export SCALA_HOME=/Library/Scala/current
-  __setup_path $SCALA_HOME/bin
+  __add_path $SCALA_HOME/bin
 fi
 
 # Node.js

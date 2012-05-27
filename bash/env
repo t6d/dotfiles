@@ -4,18 +4,49 @@
 # Helpers
 # --------------------------------------------------------------------------
 
-function __setup_path() {
-  local pattern="^|(.*:)$1(:.*)|$"
-  if [[ -n $1 && -d $1 && ! $PATH =~ $pattern ]]; then
-    PATH=$1:$PATH
+function __is_directory() {
+  [[ -z $1 ]] && return 1
+  
+  if [[ -d $1 ]] || [[ -L $1 && -d $1/`readlink $1` ]]; then
+    return 0
+  else
+    return 1
   fi
+}
+
+function __add_path() {
+  local pattern="^(.*:)?$1(:.*)?$"
+  
+  if __is_directory $1 && [[ ! $PATH =~ $pattern ]]; then
+    export PATH=$1:$PATH
+  fi
+}
+
+function __remove_path() {
+  local slash=/
+  local path=${1/%$slash/}
+  local path_with_slash=$path/
+  
+  # replace all occurrences of :<path>: with :
+  PATH=${PATH//:$path:/:}
+  PATH=${PATH//:$path_with_slash:/:}
+  
+  # remove trailing :<path>
+  PATH=${PATH/%:$path}
+  PATH=${PATH/%:$path_with_slash}
+  
+  # remove leading <path>:
+  PATH=${PATH/#$path:}
+  PATH=${PATH/#$path_with_slash:}
+  
+  export PATH
 }
 
 function __rvm_is_loaded() {
   if which rvm > /dev/null 2>&1; then
-    true
+    return 0
   else
-    false
+    return 1
   fi
 }
 
@@ -41,10 +72,6 @@ fi
 
 [[ -r $rvm_path/scripts/completion ]] && . $rvm_path/scripts/completion
 
-# -- Path settings ---------------------------------------------------------
-
-__setup_path $HOME/bin
-
 # -- Directory colors ------------------------------------------------------
 
 LS_COLORS=""
@@ -67,8 +94,17 @@ bind '"\C-w":backward-kill-word'
 [[ -f ~/.bash/env.d/$(uname) ]] && source ~/.bash/env.d/$(uname)
 
 # --------------------------------------------------------------------------
+# Path settings (~/bin)
+# --------------------------------------------------------------------------
+
+__remove_path "$HOME/bin"
+__add_path "$HOME/bin"
+
+# --------------------------------------------------------------------------
 # Tear down
 # --------------------------------------------------------------------------
 
-unset __setup_path
+unset __is_directory
+unset __add_path
+unset __remove_path
 unset __rvm_is_loaded
