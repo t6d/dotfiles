@@ -20,7 +20,9 @@ module FileHelper
   include FileUtils
   
   def backup(file)
-    file &&= file.to_s
+    return if file.nil?
+    
+    file = file.to_s
     
     if File.exists?(file) and not File.symlink?(file)
       cp_r file, "#{file}.#{today}"
@@ -28,7 +30,9 @@ module FileHelper
   end
   
   def delete(file)
-    file &&= file.to_s
+    return if file.nil?
+    
+    file = file.to_s
     
     if File.symlink?(file)
       rm file
@@ -42,6 +46,8 @@ module FileHelper
   end
   
   def link(source, destination)
+    return if source.nil? || destination.nil?
+    
     source      &&= source.to_s
     destination &&= destination.to_s
     
@@ -73,13 +79,15 @@ task :default => :install
 
 desc "Install all dotfiles"
 task :install do
-  Dir.chdir(Dir.home) do
+  home = File.expand_path('~')
+  
+  Dir.chdir(home) do
     files = Dir.glob(File.join(File.dirname(__FILE__), '*')).map do |src|
       next if ignore?(src)
     
       [
-        Pathname.new(src).relative_path_from(Pathname.new(Dir.home)),
-        File.join(Dir.home, ".#{File.basename(src)}")
+        Pathname.new(src).relative_path_from(Pathname.new(home)),
+        File.join(home, ".#{File.basename(src)}")
       ]
     end
   
