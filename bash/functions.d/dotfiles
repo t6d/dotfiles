@@ -5,23 +5,23 @@
 #
 # Params: cd|edit|reload|update
 dotfiles() {
-  local local_dotfiles
-  local global_dotfiles
   
-  if readlink ~/.localrc > /dev/null; then
-    local_dotfiles=$(dirname $(readlink ~/.localrc))
-  fi
+  __FILE__() {
+    expand_path ${BASH_SOURCE[0]}
+  }
   
-  global_dotfiles=$(dirname $(readlink ~/.bashrc))
-
+  __DIR__() {
+    dirname $(__FILE__)
+  }
+  
   case $1 in
     cd)
-      cd $global_dotfiles
+      cd $(dotfiles path)
     ;;
 
     edit)
-      echo $EDITOR $global_dotfiles $local_dotfiles
-      $EDITOR $global_dotfiles $local_dotfiles
+      echo $EDITOR _root_path
+      $EDITOR _root_path
     ;;
 
     reload)
@@ -32,11 +32,18 @@ dotfiles() {
       ( cd $global_dotfiles; rake update )
       dotfiles reload
     ;;
+    
+    path)
+      expand_path $(__DIR__)/../..
+    ;;
 
     *)
-      echo "Usage: dotfiles cd|edit|reload|update"
+      echo "Usage: dotfiles cd|edit|path|reload|update"
     ;;
   esac
+  
+  unset __FILE__
+  unset __DIR__
 }
 
 ##
@@ -47,6 +54,6 @@ _dotfiles() {
   
   [[ $cword > 1 ]] && return 0
   
-  COMPREPLY=( $(compgen -W "cd edit reload update" -- $cur) )
+  COMPREPLY=( $(compgen -W "cd edit path reload update" -- $cur) )
 }
 complete -F _dotfiles dotfiles
