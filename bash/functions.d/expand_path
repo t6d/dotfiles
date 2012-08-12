@@ -1,5 +1,9 @@
 #!/usr/bin/env bash
 
+##
+# Returns the full qualified path for a file or directory. The function also
+# resolves symbolic links.
+#
 expand_path() {
   _readlink() {
     local path=$1; shift
