@@ -7,11 +7,16 @@ __remove_path /usr/local/bin
 __add_path /usr/local/bin
 
 # Java
-if [[ -d /Library/Java/JavaVirtualMachines/1.7.0.jdk/Contents/Home ]]; then
-  export JAVA_HOME=/Library/Java/JavaVirtualMachines/1.7.0.jdk/Contents/Home
+if [[ -d $(/usr/libexec/java_home) ]]; then
+  JAVA_HOME=$(/usr/libexec/java_home)
+  
+  if [[ -d ~/Library/Java/Home ]]; then
+    JAVA_HOME=~/Library/Java/Home:$JAVA_HOME
+  fi
+  
+  export JAVA_HOME
+  
   __add_path $JAVA_HOME/bin
-elif [[ -d /Library/Java/Home ]]; then
-  export JAVA_HOME=/Library/Java/Home
 fi
 
 # TeX
