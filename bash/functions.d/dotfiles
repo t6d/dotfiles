@@ -20,8 +20,8 @@ dotfiles() {
     ;;
 
     edit)
-      echo $EDITOR _root_path
-      $EDITOR _root_path
+      echo $EDITOR $(dotfiles path)
+      $EDITOR $(dotfiles path)
     ;;
 
     reload)
