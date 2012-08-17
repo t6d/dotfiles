@@ -8,14 +8,7 @@ __add_path /usr/local/bin
 
 # Java
 if [[ -d $(/usr/libexec/java_home) ]]; then
-  JAVA_HOME=$(/usr/libexec/java_home)
-  
-  if [[ -d ~/Library/Java/Home ]]; then
-    JAVA_HOME=~/Library/Java/Home:$JAVA_HOME
-  fi
-  
-  export JAVA_HOME
-  
+  export JAVA_HOME=$(/usr/libexec/java_home)
   __add_path $JAVA_HOME/bin
 fi
 
