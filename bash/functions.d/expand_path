@@ -6,21 +6,26 @@
 #
 expand_path() {
   _readlink() {
-    local path=$1; shift
+    local path=$1
 
     while [[ -h $path ]]; do
-      path=$(readlink $path)
+      path=$(readlink "$path")
     done
 
     echo $path
     return 0
   }
   
-  local path=$(_readlink $1); shift
-  if [[ -d $path ]]; then
-    echo $(cd -P "$path" && pwd)
+  if [[ $# -eq 0 ]]; then
+    echo $(builtin cd -P "$(pwd)" && pwd)
   else
-    echo $(cd -P "$(dirname "$path")" && pwd)/$(basename "$path")
+    local path=$(_readlink "$1"); shift
+    
+    if [[ -d $path ]]; then
+      echo $(builtin cd -P "$path" && pwd)
+    elif [[ -e $path ]]; then
+      echo $(builtin cd -P "$(dirname "$path")" && pwd)/$(basename "$path")
+    fi
   fi
   
   unset _readlink
