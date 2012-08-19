@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+function pow() {
+  if [[ -z $1 ]]; then
+    ln -s "$(expand_path)" ~/.pow
+  else
+    ln -s "$(expand_path)" ~/.pow/"$1"
+  fi
+}
