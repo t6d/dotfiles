@@ -34,3 +34,13 @@ end
 def tower
   system "open -a Tower '#{Dir.pwd}'"
 end
+
+if defined?(:FactoryGirl)
+  def produce(*args)
+    FactoryGirl.build(*args)
+  end
+  
+  def produce!(*args)
+    FactoryGirl.create(*args)
+  end
+end
