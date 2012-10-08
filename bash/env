@@ -85,8 +85,10 @@ export LS_COLORS
 
 # -- Word-wise erasing -----------------------------------------------------
 
-stty werase undef
-bind '"\C-w":backward-kill-word'
+if shell_is_interactive; then
+  stty werase undef
+  bind '"\C-w":backward-kill-word'
+fi
 
 # --------------------------------------------------------------------------
 # System specific settings
