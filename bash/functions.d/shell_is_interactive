@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+
+##
+# Returns true if the shell is interactive and false otherwise.
+# For more information see http://tldp.org/LDP/abs/html/intandnonint.html
+function shell_is_interactive() {
+  case $- in
+  *i*)
+    return 0
+    ;;
+  *)
+    return 1
+    ;;
+  esac
+}
