@@ -14,8 +14,6 @@
 --ignore-dir=tmp
 --ignore-dir=doc
 --ignore-dir=coverage
---nonib
---notmstuff
 --noxcode
 --sort-files
 --color
