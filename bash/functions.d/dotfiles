@@ -25,6 +25,7 @@ dotfiles() {
     ;;
 
     reload)
+      DOTFILES_SHOULD_LOAD_ENV=true
       source ~/.bash_profile
     ;;
 
