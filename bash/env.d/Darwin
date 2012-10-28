@@ -36,6 +36,10 @@ fi
 [[ -d /usr/local/lib/node_modules ]] && \
   export NODE_PATH=/usr/local/lib/node_modules
 
+# Python (when installed via homebrew)
+[[ -d /usr/local/share/python ]] && \
+  __add_path /usr/local/share/python
+
 # -- Editor settings -------------------------------------------------------
 
 if [[ -d /Applications/Chocolat.app ]]; then
