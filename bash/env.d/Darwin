@@ -38,8 +38,9 @@ fi
 
 # -- Editor settings -------------------------------------------------------
 
-# Textmate
-if [[ -d /Applications/TextMate.app ]]; then
+if [[ -d /Applications/Chocolat.app ]]; then
+  EDITOR="choc"
+elif [[ -d /Applications/TextMate.app ]]; then
   EDITOR="mate -w"
 else
   EDITOR="vim"
