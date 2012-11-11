@@ -33,8 +33,10 @@ if [[ -d /Library/Scala/current ]]; then
 fi
 
 # Node.js
-[[ -d /usr/local/lib/node_modules ]] && \
-  export NODE_PATH=/usr/local/lib/node_modules
+if [[ -d /usr/local/share/npm ]]; then
+  export NODE_PATH=/usr/local/share/npm/lib/node_modules
+  __add_path /usr/local/share/npm/bin
+fi
 
 # Python (when installed via homebrew)
 [[ -d /usr/local/share/python ]] && \
