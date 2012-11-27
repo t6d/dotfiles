@@ -46,7 +46,7 @@ fi
 # -- Editor settings -------------------------------------------------------
 
 if [[ -d /Applications/Chocolat.app ]]; then
-  EDITOR="choc"
+  EDITOR="choc -w"
 elif [[ -d /Applications/TextMate.app ]]; then
   EDITOR="mate -w"
 else
