@@ -1,7 +1,0 @@
-let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =5
-let g:netrw_dirhist_1='/Users/t6d/.vim'
-let g:netrw_dirhist_2='/Users/t6d/.vim/plugin'
-let g:netrw_dirhist_3='/Users/t6d/Projects/flinc.org/applications/flincOnRails'
-let g:netrw_dirhist_4='/Users/t6d/.vim'
-let g:netrw_dirhist_5='/Users/t6d/.vim/colors'
