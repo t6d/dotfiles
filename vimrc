@@ -9,6 +9,8 @@ set wildmenu
 
 " Remove trailing whitespace when saving
 autocmd BufWritePre * :%s/\s\+$//e
+" Pathogen
+call pathogen#infect()
 
 " Vundle specific settings
 set nocompatible               " be iMproved
