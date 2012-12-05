@@ -61,13 +61,14 @@ nnoremap <C-k> :m .-2<CR>
 nnoremap <D-r> :source ~/.vimrc<CR>
 nnoremap <D-R> :tabnew ~/.vimrc<CR>
 
-" Tab-based indenting
+" Indentation key-bindings
 vmap <Tab> >gv
 vmap <S-Tab> <gv
 
-" Tab-based auto completion
-imap <Tab> <C-N>
-imap <S-Tab> <C-P>
+" UltiSnips key-bindings
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<tab>"
+let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 
 " Identify the highlighting group used at cursor
 " http://vim.wikia.com/wiki/Identify_the_syntax_highlighting_group_used_at_the_cursor
