@@ -2,9 +2,15 @@
 " -- Settings --
 "
 
+" Pathogen
+call pathogen#infect()
+
+" Help tags
+helptags ~/.vim/bundle/ultisnips/doc
+helptags ~/.vim/bundle/supertab/doc
+
 " Generic settings
 set nocompatible
-filetype on
 filetype plugin indent on
 
 " Soft-tabs
@@ -16,19 +22,44 @@ set shiftwidth=2
 set hlsearch
 set incsearch
 
-" Line numbering
+" Lines
+set linebreak
 set number
 
 " Syntax highlighting
 syntax on
 colorscheme smyck
 
+" Folding
+set foldmethod=syntax
+set foldlevel=99
+
 " Auto completion
 set wildmode=longest,list,full
 set wildmenu
 
-" Pathogen
-call pathogen#infect()
+" GUI specific settings
+if has("gui_running")
+  " Turns on the tab bar always
+  set showtabline=2
+
+  " Window size
+  set columns=80
+  set lines=40
+
+  " Remove tabbar
+  set guioptions-=T
+
+  " Remove scrollbar
+  set guioptions-=r
+
+  " Sets the font and size
+  set guifont=Source\ Code\ Pro:h13
+  set linespace=2
+
+  " Sets the percent transparency
+  " set transparency=10
+endif
 
 "
 " -- Auto commands --
@@ -49,7 +80,7 @@ function! ToggleLineNumberingStyle()
     set relativenumber
   endif
 endfunc
-nnoremap <C-n> :call ToggleLineNumberingStyle()<cr>
+nnoremap <S-D-l> :call ToggleLineNumberingStyle()<cr>
 
 " Movement key bindings
 " nnoremap <S-j> 10j
@@ -65,10 +96,9 @@ nnoremap <D-R> :tabnew ~/.vimrc<CR>
 vmap <Tab> >gv
 vmap <S-Tab> <gv
 
-" UltiSnips key-bindings
-let g:UltiSnipsExpandTrigger="<tab>"
-let g:UltiSnipsJumpForwardTrigger="<tab>"
-let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
+" Supertab key-bindings
+" let g:SuperTabMappingForward = '<c-space>'
+" let g:SuperTabMappingBackward = '<s-c-space>'
 
 " Identify the highlighting group used at cursor
 " http://vim.wikia.com/wiki/Identify_the_syntax_highlighting_group_used_at_the_cursor
