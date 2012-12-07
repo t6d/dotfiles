@@ -11,11 +11,14 @@ filetype off
 call pathogen#infect()
 call pathogen#helptags()
 
+" Macros
+runtime macros/matchit.vim " required by textobj-rubyblock
+
 " Generic settings
 filetype plugin indent on
 
 " Cmdline + Statusline
-set cmdheight=2
+set cmdheight=1
 set laststatus=2
 set statusline=%f     " Path to the file
 set statusline+=\     " Label
@@ -49,13 +52,17 @@ set termencoding=utf-8
 set encoding=utf-8
 set lazyredraw
 
+" Write no backup / swap files
+set nobackup
+set noswapfile
+
 " Syntax highlighting
 syntax on
 colorscheme smyck
 
 " Invisible characters
 set list
-set listchars=tab:▸\ ,trail:·,extends:#,nbsp:·
+set listchars=tab:▸\ ,trail:·,nbsp:·
 
 " Folding
 set foldmethod=syntax
@@ -127,9 +134,12 @@ nnoremap <S-C-k> :m .-2<CR>
 inoremap <C-CR> <Esc>
 nnoremap <C-CR> a
 
-" Reload .vimrc
+" Reloading and Editing the vim configuration
 nnoremap <silent> <leader>erc :edit ~/.vimrc<CR>
 nnoremap <silent> <leader>src :source ~/.vimrc<CR>
+
+" Editing ultisnips
+nnoremap <silent> <leader>se :call UltiSnipsEdit()<cr>
 
 " Indentation key-bindings
 vmap <Tab> >gv
