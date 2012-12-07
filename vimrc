@@ -2,33 +2,60 @@
 " -- Settings --
 "
 
-" Pathogen
-call pathogen#infect()
+" Use vim, not vi, settings!
+set nocompatible
 
-" Help tags
-helptags ~/.vim/bundle/ultisnips/doc
-helptags ~/.vim/bundle/supertab/doc
+" Pathogen
+" filetype off will force reloading after pathogen loaded
+filetype off
+call pathogen#infect()
+call pathogen#helptags()
 
 " Generic settings
-set nocompatible
 filetype plugin indent on
 
-" Soft-tabs
+" Cmdline + Statusline
+set cmdheight=2
+set laststatus=2
+set statusline=%f     " Path to the file
+set statusline+=\     " Label
+set statusline+=%y    " Filetype of the file
+set statusline+=%=    " Switch to the right side
+set statusline+=%l    " Current line
+set statusline+=/     " Separator
+set statusline+=%L    " Total lines
+
+" Indentation settings
 set expandtab
 set tabstop=2
+set softtabstop=2
 set shiftwidth=2
+set shiftround
+set backspace=indent,eol,start
+set autoindent
+set copyindent
+set smarttab
 
 " Searching
+set smartcase
 set hlsearch
 set incsearch
+set gdefault
 
-" Lines
+" Editor settings
 set linebreak
 set number
+set termencoding=utf-8
+set encoding=utf-8
+set lazyredraw
 
 " Syntax highlighting
 syntax on
 colorscheme smyck
+
+" Invisible characters
+set list
+set listchars=tab:▸\ ,trail:·,extends:#,nbsp:·
 
 " Folding
 set foldmethod=syntax
@@ -37,6 +64,12 @@ set foldlevel=99
 " Auto completion
 set wildmode=longest,list,full
 set wildmenu
+
+" Use the damn hjkl keys
+noremap <up> <nop>
+noremap <down> <nop>
+noremap <left> <nop>
+noremap <right> <nop>
 
 " GUI specific settings
 if has("gui_running")
@@ -52,6 +85,8 @@ if has("gui_running")
 
   " Remove scrollbar
   set guioptions-=r
+  set guioptions-=l
+  set guioptions-=L
 
   " Sets the font and size
   set guifont=Source\ Code\ Pro:h13
@@ -80,17 +115,21 @@ function! ToggleLineNumberingStyle()
     set relativenumber
   endif
 endfunc
-nnoremap <S-D-l> :call ToggleLineNumberingStyle()<cr>
+nnoremap <F2> :call ToggleLineNumberingStyle()<cr>
 
 " Movement key bindings
-" nnoremap <S-j> 10j
+" nnoremap <S-j> 10c
 " nnoremap <S-k> 10k
-nnoremap <C-j> :m .+1<CR>
-nnoremap <C-k> :m .-2<CR>
+nnoremap <S-C-j> :m .+1<CR>
+nnoremap <S-C-k> :m .-2<CR>
+
+" Faster switching between normal and insert mode
+inoremap <C-CR> <Esc>
+nnoremap <C-CR> a
 
 " Reload .vimrc
-nnoremap <D-r> :source ~/.vimrc<CR>
-nnoremap <D-R> :tabnew ~/.vimrc<CR>
+nnoremap <silent> <leader>erc :edit ~/.vimrc<CR>
+nnoremap <silent> <leader>src :source ~/.vimrc<CR>
 
 " Indentation key-bindings
 vmap <Tab> >gv
