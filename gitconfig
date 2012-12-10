@@ -1,0 +1,35 @@
+[push]
+  default = current
+[user]
+  name = Konstantin Tennhard
+  email = me@t6d.de
+[alias]
+  ci = commit -v
+  cia = commit -v -a
+  co = checkout
+  df = diff --color
+  dt = difftool
+  rb = rebase
+  st = status
+  rl = reflog
+  br = branch
+  aliases = config --get-regexp alias.*
+  remove-untracked-files = clean -f
+[difftool "Kaleidoscope"]
+  cmd = ksdiff --partial-changeset --relative-path \"$MERGED\" -- \"$LOCAL\" \"$REMOTE\"
+[diff]
+  tool = Kaleidoscope
+[difftool]
+  prompt = false
+[mergetool "Kaleidoscope"]
+  cmd = ksdiff --merge --output \"$MERGED\" --base \"$BASE\" -- \"$LOCAL\" --snapshot \"$REMOTE\" --snapshot
+[mergetool]
+  prompt = false
+[merge]
+  tool = Kaleidoscope
+[color]
+  ui = true
+[color "status"]
+  added = green
+  changed = yellow
+  untracked = magenta
