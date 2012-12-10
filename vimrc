@@ -45,6 +45,10 @@ set hlsearch
 set incsearch
 set gdefault
 
+" Scrolling
+nnoremap <C-E> 3<C-E>
+nnoremap <C-Y> 3<C-Y>
+
 " Editor settings
 set linebreak
 set number
