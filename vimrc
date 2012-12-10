@@ -119,6 +119,9 @@ autocmd BufWritePre * :%s/\s\+$//e
 " -- Key bindings --
 "
 
+" Map leader to ö
+let mapleader='ö'
+
 " Toggle between relative and absolute line numbering
 function! ToggleLineNumberingStyle()
   if(&relativenumber == 1)
