@@ -146,6 +146,9 @@ nnoremap <C-CR> a
 nnoremap <silent> <leader>erc :edit ~/.vimrc<CR>
 nnoremap <silent> <leader>src :source ~/.vimrc<CR>
 
+" Edit working directory
+nnoremap <silent> <leader>ewd :edit `pwd`<CR>
+
 " Editing ultisnips
 nnoremap <silent> <leader>se :call UltiSnipsEdit()<cr>
 
