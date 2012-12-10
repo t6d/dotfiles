@@ -52,6 +52,7 @@ nnoremap <C-Y> 3<C-Y>
 " Editor settings
 set linebreak
 set number
+set relativenumber
 set termencoding=utf-8
 set encoding=utf-8
 set lazyredraw
