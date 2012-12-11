@@ -170,3 +170,6 @@ nnoremap <silent> <leader>hs :set hlsearch!<CR>
 " Expand editor window
 nnoremap <silent> <leader>rs :set columns=120 lines=60<CR>
 
+" Ctags
+nnoremap <silent> <Leader>rt :!bundle list --paths=true \| xargs ctags --extra=+f --exclude=.git --exclude=log -R *<CR><CR>
+
