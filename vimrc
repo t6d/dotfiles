@@ -114,6 +114,7 @@ endif
 
 " Remove trailing whitespace when saving
 autocmd BufWritePre * :%s/\s\+$//e
+autocmd Syntax mkd :set wrap linebreak nolist
 
 "
 " -- Key bindings --
