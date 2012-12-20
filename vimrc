@@ -58,6 +58,10 @@ set encoding=utf-8
 set lazyredraw
 set visualbell
 
+" Change cursor shape in iTerm two when changing to insert mode
+let &t_SI = "\<ESC>]50;CursorShape=1\x7"
+let &t_EI = "\<ESC>]50;CursorShape=0\x7"
+
 " Write no backup / swap files
 set nobackup
 set noswapfile
