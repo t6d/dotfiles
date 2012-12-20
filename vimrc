@@ -56,6 +56,7 @@ set relativenumber
 set termencoding=utf-8
 set encoding=utf-8
 set lazyredraw
+set visualbell
 
 " Write no backup / swap files
 set nobackup
