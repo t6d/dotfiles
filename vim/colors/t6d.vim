@@ -89,6 +89,8 @@ hi link Structure Type
 hi link Constant Type
 hi link Number Symbol
 hi link Macro Normal
+hi link Attribute Symbol
+hi link Tag Type
 
 " ----------------------------------------------------------------------------
 " JavaScript Specific Syntax Highlighting
@@ -150,5 +152,20 @@ hi link rubyRailsARValidationMethod Macro
 " HTML Specific Syntax Highlighting
 " ----------------------------------------------------------------------------
 
-hi link htmlTagN Statement
+hi link htmlTag Tag
+hi link Tag Attribute
+hi link htmlTagName Tag
+hi link htmlSpecialTagName Tag
+hi link htmlEndTag Tag
+hi link htmlTagN Tag
+hi link htmlArg Attribute
+
+" ----------------------------------------------------------------------------
+" XML Specific Syntax Highlighting
+" ----------------------------------------------------------------------------
+
+hi link xmlTag Tag
+hi link xmlTagName Tag
+hi link xmlEndTag Tag
+hi link xmlAttrib Attribute
 
