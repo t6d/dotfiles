@@ -81,7 +81,7 @@ webinstall() {
 
     for resource in "$installation_dir"/*; do
       local resource_basename=`basename "$resource"`
-      [[ "$resource_basename" == webinstall || "$resource_basename" == Rakefile ]] && continue
+      [[ "$resource_basename" == webinstall ]] && continue
       if [[ -e ".$resource_basename" ]]; then
         _webinstall_backup ".$resource_basename"
       fi
