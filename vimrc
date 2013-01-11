@@ -57,6 +57,7 @@ set termencoding=utf-8
 set encoding=utf-8
 set lazyredraw
 set visualbell
+set mouse=a
 
 " Change cursor shape in iTerm two when changing to insert mode
 let &t_SI = "\<ESC>]50;CursorShape=1\x7"
