@@ -123,7 +123,12 @@ autocmd BufRead *_spec.rb syntax keyword rubyRspec describe context it specify i
 
 " Remove trailing whitespace when saving
 autocmd BufWritePre * :%s/\s\+$//e
+
+" Configure soft-wrapping for markdown documents
 autocmd Syntax mkd :set wrap linebreak nolist
+
+" Hide invisible characters in a conque_term session
+autocmd Syntax conque_term :set nolist
 
 "
 " -- Key bindings --
