@@ -77,6 +77,8 @@ hi PreProc ctermfg=43
 hi Symbol ctermfg=202
 hi String ctermfg=112
 hi Interpolation ctermfg=190
+hi Attribute ctermfg=202
+hi Tag ctermfg=214
 
 hi Underlined cterm=underline ctermfg=None ctermbg=None
 hi Special ctermfg=255
@@ -89,8 +91,6 @@ hi link Structure Type
 hi link Constant Type
 hi link Number Symbol
 hi link Macro Normal
-hi link Attribute Symbol
-hi link Tag Type
 
 " ----------------------------------------------------------------------------
 " JavaScript Specific Syntax Highlighting
