@@ -68,7 +68,7 @@ set noswapfile
 
 " Syntax highlighting
 syntax on
-colorscheme smyck
+colorscheme t6d
 
 " Invisible characters
 set list
