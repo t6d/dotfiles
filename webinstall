@@ -1,0 +1,97 @@
+#!/usr/bin/env bash
+
+webinstall() {
+  _webinstall_backup() {
+    if [[ -e "$1" && ! -L "$1" ]]; then
+      mv "$1" "$1.`date '+%Y%m%d%H%M%S'`"
+    fi
+  }
+
+  _webinstall_construct_relative_path() {
+    IFS="/" read -a source <<< "${1%/}"
+    IFS="/" read -a target <<< "${2%/}"
+
+    local path=""
+    local common=0
+    for element in "${source[@]}"; do
+      if [[ $element == ${target[$common]} ]]; then
+        common=$((common + 1))
+      fi
+    done
+
+    if [[ $common -gt 1 ]]; then
+      for element in ${source[@]:$common}; do
+        path="../$path"
+      done
+
+      path=${path%/}
+
+      for element in ${target[@]:$common}; do
+        if [[ -z $path ]]; then
+          path=$element
+        else
+          path="$path/$element"
+        fi
+      done
+
+      echo $path
+    else
+      for element in ${target[@]}; do
+        path="$path/$element"
+      done
+      echo $path
+    fi
+  }
+
+  local installation_dir="$1"
+  local home_dir=`( cd; pwd -P )`
+
+  # Fail if git is not installed
+  if ! which git > /dev/null; then
+    echo "git is not installed" 1>&2
+    return 1
+  fi
+
+  # Fail if no repository directory was specified
+  if [[ -z $installation_dir ]]; then
+    echo "Installation directory not specified" 1>&2
+    return 1
+  fi
+
+  # Fail if the installation directory does already exist
+  if [[ -e "$installation_dir" ]]; then
+    echo "Installation directory does already exists: $installation_dir" 1>&2
+    return 1
+  fi
+
+  # Clone repository
+  if mkdir -p `dirname "$installation_dir"`; then
+    git clone --quiet https://github.com/t6d/dotfiles.git "$installation_dir"
+  else
+    echo "Could not create installation directory" 1>&2
+    exit 1
+  fi
+
+  # Link files
+  installation_dir=`(cd "$installation_dir"; pwd -P)`
+  installation_dir=`_webinstall_construct_relative_path "$home_dir" "$installation_dir"`
+
+  (
+    cd $home_dir
+
+    for resource in "$installation_dir"/*; do
+      local resource_basename=`basename "$resource"`
+      [[ "$resource_basename" == webinstall || "$resource_basename" == Rakefile ]] && continue
+      if [[ -e ".$resource_basename" ]]; then
+        _webinstall_backup ".$resource_basename"
+      fi
+      ln -Ffs "$installation_dir/$resource_basename" ".$resource_basename"
+    done
+  )
+
+  # Tear down
+  unset _webinstall_backup
+  unset _webinstall_construct_relative_path
+}
+
+webinstall "$@"
