@@ -175,7 +175,7 @@ vmap <S-Tab> <gv
 map <F10> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<' . synIDattr(synID(line("."),col("."),0),"name") . "> lo<" . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
 
 " Toggle search highlighting
-nnoremap <silent> <leader>hs :set hlsearch!<CR>
+nnoremap <silent> <Leader>hs :noh<CR>
 
 " Expand editor window
 nnoremap <silent> <leader>rs :set columns=120 lines=60<CR>
