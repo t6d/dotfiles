@@ -153,10 +153,6 @@ nnoremap <F2> :call ToggleLineNumberingStyle()<cr>
 nnoremap <S-C-j> :m .+1<CR>
 nnoremap <S-C-k> :m .-2<CR>
 
-" Faster switching between normal and insert mode
-inoremap <C-Space> <Esc>
-nnoremap <C-Space> a
-
 " Reloading and Editing the vim configuration
 nnoremap <silent> <leader>erc :edit ~/.vimrc<CR>
 nnoremap <silent> <leader>src :source ~/.vimrc<CR>
