@@ -67,8 +67,6 @@ if ! __rvm_is_loaded; then
     source "$HOME/.rvm/scripts/rvm"
   elif [[ -s "/usr/local/rvm/scripts/rvm" ]]; then
     source "/usr/local/rvm/scripts/rvm"
-  else
-    echo "RVM not found!"
   fi
 fi
 
