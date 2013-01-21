@@ -45,8 +45,5 @@ fi
 
 # -- Editor settings -------------------------------------------------------
 
-if [[ -d /Applications/MacVim.app ]]; then
-  EDITOR="mvim -f"
-else
-  EDITOR="vim"
-fi; export EDITOR
+export EDITOR="vim -f"
+
