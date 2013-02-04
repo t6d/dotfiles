@@ -127,6 +127,7 @@ hi link rubyRailsARClassMethod Macro
 hi link rubyRailsARAssociationMethod Macro
 hi link rubyRailsARCallbackMethod Macro
 hi link rubyRailsARValidationMethod Macro
+hi link rubyRailsTestMethod Macro
 " hi link rubyBeginend          Keyword
 " hi link rubyClass             Keyword
 " hi link rubyModule            Keyword
