@@ -90,7 +90,7 @@ hi link Function Method
 hi link Structure Type
 hi link Constant Type
 hi link Number Symbol
-hi link Macro Normal
+hi link Macro Keyword
 
 " ----------------------------------------------------------------------------
 " JavaScript Specific Syntax Highlighting
