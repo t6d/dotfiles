@@ -68,6 +68,7 @@ set nobackup
 set noswapfile
 
 " Syntax highlighting
+set t_Co=256
 syntax on
 colorscheme t6d
 
