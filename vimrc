@@ -150,8 +150,8 @@ nnoremap <F2> :call ToggleLineNumberingStyle()<cr>
 " Movement key bindings
 " nnoremap <S-j> 10c
 " nnoremap <S-k> 10k
-nnoremap <S-C-j> :m .+1<CR>
-nnoremap <S-C-k> :m .-2<CR>
+" nnoremap <S-C-j> :m .+1<CR>
+" nnoremap <S-C-k> :m .-2<CR>
 
 " Reloading and Editing the vim configuration
 nnoremap <silent> <leader>erc :edit ~/.vimrc<CR>
