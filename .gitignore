@@ -2,3 +2,5 @@
 *.swp
 vim/.*
 tags
+.netrwhist
+
