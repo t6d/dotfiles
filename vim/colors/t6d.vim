@@ -68,7 +68,7 @@ hi link DiffRemoved DiffDelete
 " Syntax Highlighting
 " ----------------------------------------------------------------------------
 
-hi Comment ctermfg=238
+hi Comment ctermfg=240
 hi Type ctermfg=214
 hi Identifier ctermfg=39
 hi Keyword ctermfg=196
