@@ -30,12 +30,15 @@ webinstall() {
     exit 1
   fi
 
-  # Load dotfiles and perform actual installation
+  # Load functions and perform installation
   (
-    cd "$installation_dir"
-    source .bashrc
-    dotfiles update
-    dotfiles link
+    if [[ -d "$installation_dir"/bash/functions.d ]]; then
+      for file in $(find "$installation_dir"/bash/functions.d/ -type f); do
+        source "$file"
+      done
+    fi
+
+    dotfiles install
   )
 }
 
