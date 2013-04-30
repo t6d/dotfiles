@@ -1,48 +1,6 @@
 #!/usr/bin/env bash
 
 webinstall() {
-  _webinstall_backup() {
-    if [[ -e "$1" && ! -L "$1" ]]; then
-      mv "$1" "$1.`date '+%Y%m%d%H%M%S'`"
-    fi
-  }
-
-  _webinstall_construct_relative_path() {
-    IFS="/" read -a source <<< "${1%/}"
-    IFS="/" read -a target <<< "${2%/}"
-
-    local path=""
-    local common=0
-    for element in "${source[@]}"; do
-      if [[ $element == ${target[$common]} ]]; then
-        common=$((common + 1))
-      fi
-    done
-
-    if [[ $common -gt 1 ]]; then
-      for element in ${source[@]:$common}; do
-        path="../$path"
-      done
-
-      path=${path%/}
-
-      for element in ${target[@]:$common}; do
-        if [[ -z $path ]]; then
-          path=$element
-        else
-          path="$path/$element"
-        fi
-      done
-
-      echo $path
-    else
-      for element in ${target[@]}; do
-        path="$path/$element"
-      done
-      echo $path
-    fi
-  }
-
   local installation_dir="$1"
   local home_dir=`( cd; pwd -P )`
 
@@ -72,26 +30,14 @@ webinstall() {
     exit 1
   fi
 
-  # Link files
-  installation_dir=`(cd "$installation_dir"; pwd -P)`
-  installation_dir=`_webinstall_construct_relative_path "$home_dir" "$installation_dir"`
-
+  # Load dotfiles and perform actual installation
   (
-    cd $home_dir
-
-    for resource in "$installation_dir"/*; do
-      local resource_basename=`basename "$resource"`
-      [[ "$resource_basename" == webinstall ]] && continue
-      if [[ -e ".$resource_basename" ]]; then
-        _webinstall_backup ".$resource_basename"
-      fi
-      ln -Ffs "$installation_dir/$resource_basename" ".$resource_basename"
-    done
+    cd "$installation_dir"
+    source .bashrc
+    dotfiles update
+    dotfiles link
   )
-
-  # Tear down
-  unset _webinstall_backup
-  unset _webinstall_construct_relative_path
 }
 
 webinstall "$@"
+
