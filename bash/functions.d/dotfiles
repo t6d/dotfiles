@@ -43,16 +43,22 @@ dotfiles() {
 
     link)
       (
-        cd
+        relative_path=$(dotfiles relative-path)
 
-        for resource in "$(dotfiles relative-path)"/*; do
-          local resource_basename=$(basename "$resource")
-          [[ "$resource_basename" == webinstall ]] && continue
-          if [[ -f ".$resource_basename" || -d ".$resource_basename" ]]; then
-            _dotfiles_backup ".$resource_basename"
-          fi
-          ln -Ffs "$(dotfiles relative-path)/$resource_basename" ".$resource_basename"
-        done
+        if [[ -n $relative_path && $relative_path != "/" ]]; then
+          cd
+
+          for resource in "$relative_path"/*; do
+            local resource_basename=$(basename "$resource")
+            [[ "$resource_basename" == webinstall ]] && continue
+            if [[ -f ".$resource_basename" || -d ".$resource_basename" ]]; then
+              _dotfiles_backup ".$resource_basename"
+            fi
+            ln -Ffs "$relative_path/$resource_basename" ".$resource_basename"
+          done
+        else
+          echo "Source directory could not be determined reliably." 1>&2
+        fi
       )
     ;;
 
