@@ -2,18 +2,15 @@
 
 ##
 # Allows to edit, reload and update the dotfiles
+# Params: cd|edit|path|reload|update
 #
-# Params: cd|edit|reload|update
 dotfiles() {
-  
-  __FILE__() {
-    expand_path ${BASH_SOURCE[0]}
+  _dotfiles_backup() {
+    if [[ -e "$1" && ! -L "$1" ]]; then
+      mv "$1" "$1.`date '+%Y%m%d%H%M%S'`"
+    fi
   }
-  
-  __DIR__() {
-    dirname $(__FILE__)
-  }
-  
+
   case $1 in
     cd)
       cd $(dotfiles path)
@@ -30,21 +27,44 @@ dotfiles() {
     ;;
 
     update)
-      ( cd $global_dotfiles; rake update )
+      (
+        dotfiles cd
+        git pull --quiet
+        git submodule --quite init
+        git submodule --quiet foreach git pull --quiet
+      )
       dotfiles reload
     ;;
-    
+
+    link)
+      (
+        cd
+
+        for resource in "$(dotfiles relative-path)"/*; do
+          local resource_basename=$(basename "$resource")
+          [[ "$resource_basename" == webinstall ]] && continue
+          if [[ -f ".$resource_basename" || -d ".$resource_basename" ]]; then
+            _dotfiles_backup ".$resource_basename"
+          fi
+          ln -Ffs "$(dotfiles relative-path)/$resource_basename" ".$resource_basename"
+        done
+      )
+    ;;
+
     path)
-      expand_path $(__DIR__)/../..
+      expand_path "$(dirname ${BASH_SOURCE[0]})/../.."
+    ;;
+
+    relative-path)
+      relative_path "$(cd; pwd -P)" "$(dotfiles path)"
     ;;
 
     *)
       echo "Usage: dotfiles cd|edit|path|reload|update"
     ;;
   esac
-  
-  unset __FILE__
-  unset __DIR__
+
+  unset _dotfiles_backup
 }
 
 ##
@@ -52,9 +72,10 @@ dotfiles() {
 _dotfiles() {
   local cur cword
   _get_comp_words_by_ref cur cword
-  
+
   [[ $cword > 1 ]] && return 0
-  
-  COMPREPLY=( $(compgen -W "cd edit path reload update" -- $cur) )
+
+  COMPREPLY=( $(compgen -W "cd edit link path relative-path reload update" -- $cur) )
 }
 complete -F _dotfiles dotfiles
+
