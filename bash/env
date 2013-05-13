@@ -91,8 +91,9 @@ fi
 
 # -- History ---------------------------------------------------------------
 
-HISTFILESIZE=1048576
-HISTSIZE=10000
+export HISTFILESIZE=1048576
+export HISTSIZE=10000
+export PROMPT_COMMAND="history -a; history -n"
 
 # --------------------------------------------------------------------------
 # System specific settings
