@@ -170,3 +170,10 @@ hi link xmlTagName Tag
 hi link xmlEndTag Tag
 hi link xmlAttrib Attribute
 
+" ----------------------------------------------------------------------------
+" SQL Specific Syntax Highlighting
+" ----------------------------------------------------------------------------
+
+hi link sqlKeyword Statement
+hi link sqlStatement Statement
+
