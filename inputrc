@@ -12,3 +12,7 @@ $if mode=vi
   "\e[B": history-search-forward
 $endif
 
+$if ruby
+  set editing-mode emacs
+$endif
+
