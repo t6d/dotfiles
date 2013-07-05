@@ -14,18 +14,18 @@ alias cd!="cd ..; cd -"
 
 alias g="git"
 alias ga="git add"
-alias gai="git add -i"
-alias gca="git commit -a"
-alias gc="git commit"
 alias gc="git commit"
 alias gco="git checkout"
-alias gcob="git checkout -b $1"
-alias gd="git diff --color"
-alias gp="git push"
-alias gl="git pull"
+alias gd="git diff"
 alias gs="git status"
 
-alias gitx="open -a GitX"
+# Auto Completion
+__git_complete g _git
+__git_complete ga _git_add
+__git_complete gc _git_commit
+__git_complete gco _git_checkout
+__git_complete gd _git_diff
+__git_complete gs _git_status
 
 # --------------------------------------------------------------------------
 # ls
