@@ -187,3 +187,11 @@ nnoremap <silent> <Leader>ct :!bundle list --paths=true \| xargs ctags --extra=+
 
 " Write file with sudo privileges
 cmap w!! %!sudo tee > /dev/null %
+
+"
+" -- Configuration options for plugins --
+"
+
+" Vroom
+let g:vroom_zeus=1
+
