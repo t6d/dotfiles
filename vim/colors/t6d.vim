@@ -7,15 +7,18 @@ endif
 let g:colors_name = "t6d"
 
 " hi Normal
-hi LineNr ctermfg=235 ctermbg=none
-hi CursorLine cterm=none
-hi StatusLine cterm=none ctermfg=255 ctermbg=235
-hi StatusLineNC cterm=none ctermfg=244 ctermbg=233
-hi VertSplit cterm=none ctermfg=235 ctermbg=none
-hi Search cterm=underline ctermfg=none ctermbg=none
-hi IncSearch cterm=underline ctermfg=none ctermbg=none
-hi NonText ctermfg=235
-hi SpecialKey ctermfg=235
+hi LineNr       ctermfg=235     ctermbg=none
+hi CursorLine   cterm=none
+hi StatusLine   cterm=none      ctermfg=255  ctermbg=235
+hi StatusLineNC cterm=none      ctermfg=244  ctermbg=233
+hi TabLineFill  cterm=none      ctermfg=none ctermbg=233
+hi TabLine      cterm=none      ctermfg=240  ctermbg=233
+hi TabLineSel   cterm=none      ctermfg=255  ctermbg=235
+hi VertSplit    cterm=none      ctermfg=235  ctermbg=none
+hi Search       cterm=underline ctermfg=none ctermbg=none
+hi IncSearch    cterm=underline ctermfg=none ctermbg=none
+hi NonText      ctermfg=235
+hi SpecialKey   ctermfg=235
 
 " hi ColumnMargin
 " hi Error
