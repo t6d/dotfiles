@@ -14,20 +14,6 @@
   br = branch
   aliases = config --get-regexp alias.*
   remove-untracked-files = clean -f
-[difftool "Kaleidoscope"]
-  cmd = ksdiff --partial-changeset --relative-path \"$MERGED\" -- \"$LOCAL\" \"$REMOTE\"
-[diff]
-  tool = Kaleidoscope
-[difftool]
-  prompt = false
-[mergetool "Kaleidoscope"]
-  cmd = ksdiff --merge --output \"$MERGED\" --base \"$BASE\" -- \"$LOCAL\" --snapshot \"$REMOTE\" --snapshot
-  trustExitCode = true
-[mergetool]
-  prompt = false
-  keepBackup = true
-[merge]
-  tool = Kaleidoscope
 [color]
   ui = true
 [color "status"]
