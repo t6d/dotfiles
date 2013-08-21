@@ -1,8 +1,5 @@
 [push]
   default = current
-[user]
-  name = Konstantin Tennhard
-  email = me@t6d.de
 [alias]
   ci = commit -v
   cia = commit -v -a
