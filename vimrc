@@ -127,10 +127,10 @@ endif
 autocmd BufNewFile,BufRead *_spec.rb syntax keyword rubyRspec describe context it specify it_should_behave_like before after setup subject its shared_examples_for shared_context let let!
 
 " Remove trailing whitespace when saving
-autocmd BufWritePre * :%s/\s\+$//e
+autocmd BufWritePre * %s/\s\+$//e
 
 " Configure soft-wrapping for markdown documents
-autocmd Syntax mkd :set wrap linebreak nolist
+autocmd Syntax mkd set wrap linebreak nolist
 
 " Disable folding in Markdown documents
 autocmd Syntax mkd setlocal nofoldenable
