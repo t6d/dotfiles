@@ -126,6 +126,9 @@ endif
 " Add highlighting for Rspec keywords
 autocmd BufNewFile,BufRead *_spec.rb syntax keyword rubyRspec describe context it specify it_should_behave_like before after setup subject its shared_examples_for shared_context let let!
 
+" Set foldmethod to indent for Ruby files to increase performance
+autocmd Syntax ruby setlocal foldmethod=indent
+
 " Remove trailing whitespace when saving
 autocmd BufWritePre * %s/\s\+$//e
 
