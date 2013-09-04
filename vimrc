@@ -124,7 +124,7 @@ endif
 "
 
 " Add highlighting for Rspec keywords
-autocmd BufRead *_spec.rb syntax keyword rubyRspec describe context it specify it_should_behave_like before after setup subject its shared_examples_for shared_context let let!
+autocmd BufNewFile,BufRead *_spec.rb syntax keyword rubyRspec describe context it specify it_should_behave_like before after setup subject its shared_examples_for shared_context let let!
 
 " Remove trailing whitespace when saving
 autocmd BufWritePre * :%s/\s\+$//e
