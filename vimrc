@@ -132,6 +132,8 @@ autocmd BufWritePre * :%s/\s\+$//e
 " Configure soft-wrapping for markdown documents
 autocmd Syntax mkd :set wrap linebreak nolist
 
+" Disable folding in Markdown documents
+autocmd Syntax mkd setlocal nofoldenable
 
 "
 " -- Key bindings --
