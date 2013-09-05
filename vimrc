@@ -145,6 +145,14 @@ autocmd Syntax mkd setlocal nofoldenable
 " -- Key bindings --
 "
 
+" Motion command for selecting the contents of the next bracket pair
+function! SelectInParentheses()
+ normal %
+ let char = getline(".")[col(".")-1]
+ exec "normal vi" . char
+endfunction
+onoremap P :<C-U>call SelectInParentheses()<CR>
+
 " Set the mapleader
 let mapleader=" "
 
