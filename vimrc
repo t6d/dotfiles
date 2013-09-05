@@ -156,7 +156,7 @@ function! ToggleLineNumberingStyle()
     set relativenumber
   endif
 endfunc
-nnoremap <F2> :call ToggleLineNumberingStyle()<cr>
+nnoremap <silent> <F2> :call ToggleLineNumberingStyle()<cr>
 
 " Movement key bindings
 " nnoremap <S-j> 10c
