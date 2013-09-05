@@ -189,14 +189,8 @@ map <F10> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans
 " Toggle search highlighting
 nnoremap <silent> <Leader>hs :noh<CR>
 
-" Expand editor window
-nnoremap <silent> <leader>rs :set columns=120 lines=60<CR>
-
 " Ctags
 nnoremap <silent> <Leader>ct :!bundle list --paths=true \| xargs ctags --extra=+f --exclude=.git --exclude=log -R *<CR><CR>
-
-" Write file with sudo privileges
-cmap w!! %!sudo tee > /dev/null %
 
 "
 " -- Configuration options for plugins --
