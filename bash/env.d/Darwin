@@ -43,6 +43,10 @@ fi
 [[ -d /usr/local/share/python ]] && \
   __add_path /usr/local/share/python
 
+# Postgres.app
+[[ -d /Applications/Postgres.app ]] && \
+  __add_path /Applications/Postgres.app/Contents/MacOS/bin
+
 # -- Editor settings -------------------------------------------------------
 
 export EDITOR="vim -f"
