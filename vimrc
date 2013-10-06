@@ -147,10 +147,44 @@ autocmd Syntax mkd setlocal nofoldenable
 "
 
 " Motion command for selecting the contents of the next bracket pair
-function! SelectInParentheses()
- normal %
- let char = getline(".")[col(".")-1]
- exec "normal vi" . char
+function! SelectContentsOfClosestBracketPair()
+  let l:line = line('.')
+  let l:column = col('.')
+  let l:closest_left_bracket = 0
+  let l:closest_right_bracket = 0
+  let l:pattern = '\%' . l:line . 'l' . '[\[\](){}]'
+
+  if search(l:pattern, 'Wc')
+    let l:closest_right_bracket = col('.')
+  endif
+
+  if search(l:pattern, 'Wbc')
+    let l:closest_left_bracket = col('.')
+  endif
+
+  if l:closest_left_bracket == 0 && l:closest_right_bracket == 0
+    call cursor(l:line, l:column)
+    return
+  endif
+
+  if l:closest_left_bracket > 0 && l:closest_right_bracket > 0
+    if l:closest_left_bracket < l:closest_left_bracket
+      call cursor(l:line, l:closest_left_bracket)
+    else
+      call cursor(l:line, l:closest_right_bracket)
+    endif
+  else
+    if (l:closest_right_bracket - l:line) < (l:line - l:closest_left_bracket)
+      call cursor(l:line, l:closest_right_bracket)
+    else
+      call cursor(l:line, l:closest_left_bracket)
+    endif
+  endif
+
+  let l:bracket_char = getline(".")[col(".")-1]
+  exec 'normal! vi' . l:bracket_char
+endfunction
+onoremap P :<C-U>call SelectContentsOfClosestBracketPair()<CR>
 
 " Separator generation
 function! GenerateSeparator(char)
