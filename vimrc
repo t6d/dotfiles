@@ -151,8 +151,16 @@ function! SelectInParentheses()
  normal %
  let char = getline(".")[col(".")-1]
  exec "normal vi" . char
+
+" Separator generation
+function! GenerateSeparator(char)
+  let l:width = max([0, 77 - col('.')])
+  return repeat(a:char, l:width)
 endfunction
-onoremap P :<C-U>call SelectInParentheses()<CR>
+iabbrev --- <C-R>=GenerateSeparator('-')<CR>
+iabbrev === <C-R>=GenerateSeparator('=')<CR>
+iabbrev +++ <C-R>=GenerateSeparator('+')<CR>
+iabbrev *** <C-R>=GenerateSeparator('*')<CR>
 
 " Set the mapleader
 let mapleader=" "
