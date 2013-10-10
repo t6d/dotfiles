@@ -42,14 +42,6 @@ function __remove_path() {
   export PATH
 }
 
-function __rvm_is_loaded() {
-  if which rvm > /dev/null 2>&1; then
-    return 0
-  else
-    return 1
-  fi
-}
-
 # --------------------------------------------------------------------------
 # Common settings
 # --------------------------------------------------------------------------
@@ -59,18 +51,6 @@ function __rvm_is_loaded() {
 export LANG=en_US.UTF-8
 export LANGUAGE=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
-
-# -- RVM -------------------------------------------------------------------
-
-if ! __rvm_is_loaded; then
-  if [[ -s "$HOME/.rvm/scripts/rvm" ]]; then
-    source "$HOME/.rvm/scripts/rvm"
-  elif [[ -s "/usr/local/rvm/scripts/rvm" ]]; then
-    source "/usr/local/rvm/scripts/rvm"
-  fi
-fi
-
-[[ -r $rvm_path/scripts/completion ]] && . $rvm_path/scripts/completion
 
 # -- Directory colors ------------------------------------------------------
 
@@ -118,3 +98,4 @@ unset __is_directory
 unset __add_path
 unset __remove_path
 unset __rvm_is_loaded
+

@@ -27,8 +27,8 @@ function __configure_prompt() {
   local host
   local directory
   local status
-  local rvm
-  
+  local ruby_version
+
   if user_is_root; then
     username="$red$underlined\u$reset"
   else
@@ -48,14 +48,14 @@ function __configure_prompt() {
   else
     status=""
   fi
-  
-  if  which rvm-prompt > /dev/null; then
-    rvm="$black[\$(rvm-prompt i v p g)]$reset"
+
+  if  which rbenv > /dev/null; then
+    ruby_version="$black[ruby:\$(rbenv version-name)]$reset"
   else
-    rvm=""
+    ruby_version=""
   fi
 
-  PS1="\n$username$bold@$reset$host$bold:$reset$directory $rvm $status\n$ "
+  PS1="\n$username$bold@$reset$host$bold:$reset$directory $ruby_version $status\n$ "
 }
 
 __configure_prompt; unset __configure_prompt

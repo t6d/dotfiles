@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # Load all functions
-if [[ -f ~/.bash/functions ]]; then 
+if [[ -f ~/.bash/functions ]]; then
   source ~/.bash/functions
 fi
 
@@ -14,7 +14,7 @@ if $($DOTFILES_SHOULD_LOAD_ENV); then
 fi
 
 # Load aliases
-if [[ -f ~/.bash/aliases ]]; then 
+if [[ -f ~/.bash/aliases ]]; then
   source ~/.bash/aliases
 fi
 
@@ -27,3 +27,6 @@ fi
 if [[ -f ~/.localrc ]]; then
   source ~/.localrc
 fi
+
+# Setup rbenv
+if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
