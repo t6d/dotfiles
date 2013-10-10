@@ -192,7 +192,6 @@ function! GenerateSeparator(char)
   return repeat(a:char, l:width)
 endfunction
 iabbrev --- <C-R>=GenerateSeparator('-')<CR>
-iabbrev === <C-R>=GenerateSeparator('=')<CR>
 iabbrev +++ <C-R>=GenerateSeparator('+')<CR>
 iabbrev *** <C-R>=GenerateSeparator('*')<CR>
 
