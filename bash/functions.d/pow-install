@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-function pow() {
+function pow-install() {
   if [[ -z $1 ]]; then
     ln -s "$(expand_path)" ~/.pow
   else
