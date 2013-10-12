@@ -63,8 +63,13 @@ set mouse=a
 set history=10000
 
 " Change cursor shape in iTerm two when changing to insert mode
-let &t_SI = "\<ESC>]50;CursorShape=1\x7"
-let &t_EI = "\<ESC>]50;CursorShape=0\x7"
+if exists('$TMUX')
+  let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=1\x7\<Esc>\\"
+  let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=0\x7\<Esc>\\"
+else
+  let &t_SI = "\<Esc>]50;CursorShape=1\x7"
+  let &t_EI = "\<Esc>]50;CursorShape=0\x7"
+endif
 
 " Write no backup / swap files
 set nobackup
