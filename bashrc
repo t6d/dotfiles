@@ -28,5 +28,3 @@ if [[ -f ~/.localrc ]]; then
   source ~/.localrc
 fi
 
-# Setup rbenv
-if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
