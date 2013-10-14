@@ -58,6 +58,7 @@ set encoding=utf-8
 set lazyredraw
 set visualbell
 set mouse=a
+set fillchars+=vert:\│
 
 " History
 set history=10000
