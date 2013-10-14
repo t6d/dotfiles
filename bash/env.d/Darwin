@@ -2,50 +2,47 @@
 
 # -- Path settings ---------------------------------------------------------
 
-# Remove /usr/local/bin from PATH and position it BEFORE /usr/bin
-__remove_path /usr/local/bin
-__add_path /usr/local/bin
+# TeX
+[[ -d /usr/texbin ]] && \
+  __shift_path /usr/texbin
+
+# X11
+[[ -d /usr/X11/bin ]] && \
+  __shift_path /usr/X11/bin
+
+__shift_path /usr/local/bin
 
 # Java
 if [[ -d $(/usr/libexec/java_home) ]]; then
   export JAVA_HOME=$(/usr/libexec/java_home)
-  __add_path $JAVA_HOME/bin
+  __shift_path $JAVA_HOME/bin
 fi
-
-# TeX
-[[ -d /usr/texbin ]] && \
-  __add_path /usr/texbin
-
-# X11
-[[ -d /usr/X11/bin ]] && \
-  __add_path /usr/X11/bin
 
 # Groovy
 if [[ -d /Library/Groovy/current ]]; then
   export GROOVY_HOME=/Library/Groovy/current
-  __add_path $GROOVY_HOME/bin
+  __shift_path $GROOVY_HOME/bin
 fi
 
 # Scala
 if [[ -d /Library/Scala/current ]]; then
   export SCALA_HOME=/Library/Scala/current
-  __add_path $SCALA_HOME/bin
+  __shift_path $SCALA_HOME/bin
 fi
 
 # Node.js
 if [[ -d /usr/local/share/npm ]]; then
   export NODE_PATH=/usr/local/share/npm/lib/node_modules
-  __add_path /usr/local/share/npm/bin
-  __add_path ./node_modules/.bin
+  __shift_path /usr/local/share/npm/bin
 fi
 
 # Python (when installed via homebrew)
 [[ -d /usr/local/share/python ]] && \
-  __add_path /usr/local/share/python
+  __shift_path /usr/local/share/python
 
 # Postgres.app
 [[ -d /Applications/Postgres.app ]] && \
-  __add_path /Applications/Postgres.app/Contents/MacOS/bin
+  __shift_path /Applications/Postgres.app/Contents/MacOS/bin
 
 # -- Editor settings -------------------------------------------------------
 

@@ -5,12 +5,8 @@ if [[ -f ~/.bash/functions ]]; then
   source ~/.bash/functions
 fi
 
-# Set up the environment – this needs to be executed only once since the
-# environment is inherited
-export DOTFILES_SHOULD_LOAD_ENV=${DOTFILES_SHOULD_LOAD_ENV-true}
-if $($DOTFILES_SHOULD_LOAD_ENV); then
+if [[ -f ~/.bash/env ]]; then
   source ~/.bash/env
-  DOTFILES_SHOULD_LOAD_ENV=false
 fi
 
 # Load aliases

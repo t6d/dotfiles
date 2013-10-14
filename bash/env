@@ -42,6 +42,11 @@ function __remove_path() {
   export PATH
 }
 
+function __shift_path() {
+  __remove_path $1
+  __add_path $1
+}
+
 # --------------------------------------------------------------------------
 # Common settings
 # --------------------------------------------------------------------------
@@ -96,8 +101,7 @@ fi
 # Path settings (~/bin)
 # --------------------------------------------------------------------------
 
-__remove_path "$HOME/bin"
-__add_path "$HOME/bin"
+__shift_path "$HOME/bin"
 
 # --------------------------------------------------------------------------
 # Tear down
@@ -106,5 +110,5 @@ __add_path "$HOME/bin"
 unset __is_directory
 unset __add_path
 unset __remove_path
-unset __rvm_is_loaded
+unset __shift_path
 
