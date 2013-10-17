@@ -43,7 +43,6 @@ set smarttab
 set smartcase
 set hlsearch
 set incsearch
-set gdefault
 
 " Scrolling
 nnoremap <C-E> 3<C-E>
