@@ -92,8 +92,9 @@ export PROMPT_COMMAND="history -a; history -c; history -r"
 # Setup rbenv
 # --------------------------------------------------------------------------
 
-if which rbenv > /dev/null; then
-  __remove_path "$HOME/.rbenv/shims"
+if [[ -d "$HOME/.rbenv" ]]; then
+  __shift_path "$HOME/.rbenv/bin"
+  __shift_path "$HOME/.rbenv/shims"
   eval "$(rbenv init -)"
 fi
 
