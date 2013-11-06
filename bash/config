@@ -67,11 +67,11 @@ __configure_prompt; unset __configure_prompt
 # Linux/Unix default
 [[ -f /etc/bash_completion ]] && source /etc/bash_completion
 
-# MacPorts
-[[ -f /opt/local/etc/bash_completion ]] && \
-  source /opt/local/etc/bash_completion
-
-# Homebrew
-if [[ -x `which brew` && -f `brew --prefix`/etc/bash_completion ]]; then
+# Homebrew for Version 1
+[[ -x `which brew` && -f `brew --prefix`/etc/bash_completion ]] && \
   source `brew --prefix`/etc/bash_completion
-fi
+
+# Homebrew for Version 2
+[[ -x `which brew` && -f `brew --prefix`/share/bash_completion/bash_completion ]] && \
+  source `brew --prefix`/share/bash_completion/bash_completion
+
