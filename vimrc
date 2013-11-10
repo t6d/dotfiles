@@ -151,7 +151,7 @@ autocmd Syntax mkd setlocal nofoldenable
 autocmd FileType go setlocal noexpandtab listchars=tab:\ \ ,trail:·,nbsp:·
 
 " Auto format Go files before saving them
-autocmd FileType go autocmd BufWritePre <buffer> Fmt
+" autocmd FileType go autocmd BufWritePre <buffer> Fmt
 
 "
 " -- Key bindings --
