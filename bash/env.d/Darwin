@@ -36,10 +36,6 @@ if [[ -d /usr/local/share/npm ]]; then
   __shift_path /usr/local/share/npm/bin
 fi
 
-# Python (when installed via homebrew)
-[[ -d /usr/local/share/python ]] && \
-  __shift_path /usr/local/share/python
-
 # Postgres.app
 [[ -d /Applications/Postgres.app ]] && \
   __shift_path /Applications/Postgres.app/Contents/MacOS/bin
