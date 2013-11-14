@@ -13,7 +13,6 @@
   rl = reflog
   br = branch
   aliases = config --get-regexp alias.*
-  remove-untracked-files = clean -f
 [color]
   ui = true
 [color "status"]
