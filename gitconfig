@@ -14,6 +14,7 @@
   br = branch
   aliases = config --get-regexp alias.*
   tree = log --graph --decorate --pretty=oneline --abbrev-commit
+  ap = add -p
 [color]
   ui = true
 [color "status"]
