@@ -13,6 +13,7 @@
   rl = reflog
   br = branch
   aliases = config --get-regexp alias.*
+  tree = log --graph --decorate --pretty=oneline --abbrev-commit
 [color]
   ui = true
 [color "status"]
