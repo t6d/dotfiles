@@ -15,6 +15,7 @@
   aliases = config --get-regexp alias.*
   tree = log --graph --decorate --pretty=oneline --abbrev-commit
   ap = add -p
+  current-branch = rev-parse --symbolic-full-name --abbrev-ref HEAD
 [color]
   ui = true
 [color "status"]
