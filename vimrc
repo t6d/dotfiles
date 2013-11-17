@@ -153,6 +153,9 @@ autocmd FileType go setlocal noexpandtab listchars=tab:\ \ ,trail:·,nbsp:·
 " Auto format Go files before saving them
 " autocmd FileType go autocmd BufWritePre <buffer> Fmt
 
+" Use // for comments in Go files
+autocmd FileType go setlocal commentstring=//\ %s
+
 "
 " -- Key bindings --
 "
