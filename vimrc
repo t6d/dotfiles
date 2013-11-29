@@ -58,6 +58,7 @@ set lazyredraw
 set visualbell
 set mouse=a
 set fillchars+=vert:\│
+set clipboard+=unnamed
 
 " History
 set history=10000
