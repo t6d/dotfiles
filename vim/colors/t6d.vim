@@ -6,19 +6,37 @@ endif
 
 let g:colors_name = "t6d"
 
-" hi Normal
-hi LineNr       ctermfg=235     ctermbg=none
-hi CursorLine   cterm=none
-hi StatusLine   cterm=none      ctermfg=255  ctermbg=235
-hi StatusLineNC cterm=none      ctermfg=244  ctermbg=233
-hi TabLineFill  cterm=none      ctermfg=none ctermbg=233
-hi TabLine      cterm=none      ctermfg=240  ctermbg=233
-hi TabLineSel   cterm=none      ctermfg=255  ctermbg=235
-hi VertSplit    cterm=none      ctermfg=235  ctermbg=none
-hi Search       cterm=underline ctermfg=none ctermbg=none
-hi IncSearch    cterm=underline ctermfg=none ctermbg=none
+hi clear Normal
+hi clear LineNr
+hi clear CursorLine
+hi clear CursorLineNr
+hi clear StatusLine
+hi clear StatusLineNC
+hi clear TabLineFill
+hi clear TabLine
+hi clear TabLineSel
+hi clear VertSplit
+hi clear Search
+hi clear IncSearch
+hi clear NonText
+hi clear SpecialKey
+hi clear MatchParen
+
+hi Normal       guibg=#000000   guifg=#ffffff
+hi LineNr       ctermfg=235     guifg=#262626
+hi CursorLine   ctermbg=233     guibg=#121212
+hi CursorLineNr ctermfg=214     guifg=#ffaf00
+hi StatusLine   ctermfg=255     ctermbg=235   guifg=#ffffff guibg=#262626
+hi StatusLineNC ctermfg=244     ctermbg=233   guifg=#808080 guibg=#121212
+hi TabLineFill  ctermbg=233
+hi TabLine      ctermfg=240     ctermbg=233
+hi TabLineSel   ctermfg=255     ctermbg=235
+hi VertSplit    ctermfg=235     guifg=#262626
+hi Search       cterm=underline gui=underline
+hi IncSearch    cterm=underline gui=underline
 hi NonText      ctermfg=235
 hi SpecialKey   ctermfg=235
+hi MatchParen   ctermfg=214 guifg=#ffaf00
 
 " hi ColumnMargin
 " hi Error
@@ -26,9 +44,6 @@ hi SpecialKey   ctermfg=235
 " hi Folded
 " hi FoldColumn
 " hi ModeMsg
-" hi Pmenu
-" hi PmenuSel
-" hi PmenuSbar
 " hi SpellBad
 " hi SpellCap
 " hi SpellRare
@@ -46,47 +61,61 @@ hi clear Pmenu
 hi clear PmenuSel
 hi clear PmenuSbar
 
-hi link Pmenu StatusLineNC
+hi PmenuSbar  ctermfg=233 ctermbg=233 guifg=#121212 guibg=#121212
+hi PmenuThumb ctermfg=235 ctermbg=235 guifg=#262626 guibg=#262626
+
+hi link Pmenu    StatusLineNC
 hi link PmenuSel StatusLine
-hi PmenuSbar ctermfg=233 ctermbg=233
-hi PmenuThumb ctermfg=235 ctermbg=235
+
+" ----------------------------------------------------------------------------
+" CtrlP Highlighting
+" ----------------------------------------------------------------------------
+
+hi CtrlPMode1 ctermfg=214 ctermbg=235 guifg=#ffaf00 guibg=#808080
+
+hi link CtrlPLinePre LineNr
+hi link CtrlPMatch   MatchParen
+hi link CtrlPMode2   StatusLine
 
 " ----------------------------------------------------------------------------
 " Diff Highlighting
 " ----------------------------------------------------------------------------
 
-hi DiffFile ctermfg=244
-hi link DiffNewFile DiffFile
-hi DiffLine cterm=underline ctermfg=255
+hi clear DiffFile
+hi clear DiffLine
 hi clear DiffAdd
-hi clear DiffDelete
 hi clear DiffChange
-hi DiffAdd ctermfg=34
-hi DiffDelete ctermfg=196
-hi DiffChange ctermfg=214
-hi link DiffAdded DiffAdd
+hi clear DiffDelete
+
+hi DiffFile   ctermfg=244 guifg=#808080
+hi DiffLine   ctermfg=255 guifg=#ffffff cterm=underline gui=underline
+hi DiffAdd    ctermfg=34  guifg=#00af00
+hi DiffChange ctermfg=214 guifg=#ffaf00
+hi DiffDelete ctermfg=196 guifg=#ff0000
+
+hi link DiffNewFile DiffFile
+hi link DiffAdded   DiffAdd
 hi link DiffRemoved DiffDelete
 
 " ----------------------------------------------------------------------------
 " Syntax Highlighting
 " ----------------------------------------------------------------------------
 
-hi Comment ctermfg=240
-hi Type ctermfg=214
-hi Identifier ctermfg=39
-hi Keyword ctermfg=196
-hi Statement ctermfg=196
-hi PreProc ctermfg=43
-hi Symbol ctermfg=202
-hi String ctermfg=112
-hi Interpolation ctermfg=190
-hi Attribute ctermfg=202
-hi Tag ctermfg=214
+hi Comment       ctermfg=240 guifg=#585858
+hi Type          ctermfg=214 guifg=#ffaf00
+hi Identifier    ctermfg=39  guifg=#00afff
+hi Keyword       ctermfg=196 guifg=#ff0000
+hi Statement     ctermfg=196 guifg=#ff0000
+hi PreProc       ctermfg=43  guifg=#00d7af
+hi Symbol        ctermfg=202 guifg=#ff5f00
+hi String        ctermfg=112 guifg=#87d700
+hi Interpolation ctermfg=190 guifg=#d7ff00
+hi Attribute     ctermfg=202 guifg=#ff5f00
+hi Tag           ctermfg=214 guifg=#ffaf00
+hi Special       ctermfg=255 guifg=#ffffff
 
-hi Underlined cterm=underline ctermfg=None ctermbg=None
-hi Special ctermfg=255
-
-hi Directory ctermfg=39
+hi Underlined cterm=underline ctermfg=none   ctermbg=none
+hi Directory  ctermfg=39      guifg=#00afff
 
 hi link Method Type
 hi link Function Method
