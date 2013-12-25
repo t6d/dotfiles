@@ -108,10 +108,6 @@ if has("gui_running")
   " Turns on the tab bar always
   set showtabline=2
 
-  " Window size
-  set columns=80
-  set lines=40
-
   " Remove tabbar
   set guioptions-=T
 
@@ -122,7 +118,7 @@ if has("gui_running")
 
   " Sets the font and size
   set guifont=Source\ Code\ Pro:h13
-  set linespace=2
+  set linespace=1
 
   " Sets the percent transparency
   " set transparency=10
