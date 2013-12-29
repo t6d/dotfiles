@@ -44,7 +44,7 @@ function __configure_prompt() {
   directory="$cyan\w$reset"
 
   if which vcprompt > /dev/null; then
-    status="$black\$(vcprompt)$reset"
+    status="$black\$(vcprompt -f [%n:%b%m%u])$reset"
   else
     status=""
   fi
