@@ -58,3 +58,6 @@
 [submodule "vim/bundle/emmet"]
 	path = vim/bundle/emmet
 	url = https://github.com/mattn/emmet-vim.git
+[submodule "vim/bundle/jshint2"]
+	path = vim/bundle/jshint2
+	url = https://github.com/Shutnik/jshint2.vim.git
