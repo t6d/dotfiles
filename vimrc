@@ -100,8 +100,8 @@ noremap <left> <nop>
 noremap <right> <nop>
 
 " Use visual line scrolling
-nnoremap j gj
-nnoremap k gk
+"nnoremap j gj
+"nnoremap k gk
 
 " GUI specific settings
 if has("gui_running")
