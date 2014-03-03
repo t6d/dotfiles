@@ -199,12 +199,13 @@ onoremap P :<C-U>call SelectContentsOfClosestBracketPair()<CR>
 
 " Separator generation
 function! GenerateSeparator(char)
-  let l:width = max([0, 77 - col('.')])
+  let l:width = max([0, 76 - col('.')])
   return repeat(a:char, l:width)
 endfunction
-iabbrev --- <C-R>=GenerateSeparator('-')<CR>
-iabbrev +++ <C-R>=GenerateSeparator('+')<CR>
-iabbrev *** <C-R>=GenerateSeparator('*')<CR>
+iabbrev ---- <C-R>=GenerateSeparator('-')<CR>
+iabbrev ==== <C-R>=GenerateSeparator('=')<CR>
+iabbrev ++++ <C-R>=GenerateSeparator('+')<CR>
+iabbrev **** <C-R>=GenerateSeparator('*')<CR>
 
 " Set the mapleader
 let mapleader=" "
