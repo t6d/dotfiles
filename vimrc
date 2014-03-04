@@ -261,3 +261,6 @@ nnoremap <silent> <Leader>ct :!bundle list --paths=true \| xargs ctags --extra=+
 " Vroom
 let g:vroom_zeus=1
 
+" CtrlP
+let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+
