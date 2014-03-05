@@ -44,6 +44,20 @@ set smartcase
 set hlsearch
 set incsearch
 
+" Visual Search
+" From http://got-ravings.blogspot.com/2008/07/vim-pr0n-visual-search-mappings.html
+function! s:VSetSearch()
+  let temp = @s
+  norm! gv"sy
+  let @/ = '\V' . substitute(escape(@s, '\'), '\n', '\\n', 'g')
+  let @s = temp
+endfunction
+vmap * :<C-u>call <SID>VSetSearch()<CR>//<CR>
+vmap # :<C-u>call <SID>VSetSearch()<CR>??<CR>
+" recursively vimgrep for word under cursor or selection if you hit leader-star
+nmap <leader>* :execute 'noautocmd vimgrep /\V' . substitute(escape(expand("<cword>"), '\'), '\n', '\\n', 'g') . '/ **'<CR>
+vmap <leader>* :<C-u>call <SID>VSetSearch()<CR>:execute 'noautocmd vimgrep /' . @/ . '/ **'<CR>
+
 " Scrolling
 nnoremap <C-E> 3<C-E>
 nnoremap <C-Y> 3<C-Y>
