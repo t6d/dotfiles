@@ -40,6 +40,10 @@ fi
 [[ -d /Applications/Postgres.app ]] && \
   __shift_path /Applications/Postgres.app/Contents/MacOS/bin
 
+# Python
+[[ -d `brew --prefix`/lib/python2.7/site-packages ]] && \
+  export PYTHONPATH=`brew --prefix`/lib/python2.7/site-packages:$PYTHONPATH
+
 # -- Editor settings -------------------------------------------------------
 
 export EDITOR="vim -f"
