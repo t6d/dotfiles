@@ -136,6 +136,8 @@ if has("gui_running")
 
   " Sets the percent transparency
   " set transparency=10
+  set background=light
+  colorscheme hemisu
 endif
 
 "
