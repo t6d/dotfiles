@@ -61,3 +61,6 @@
 [submodule "vim/bundle/jshint2"]
 	path = vim/bundle/jshint2
 	url = https://github.com/Shutnik/jshint2.vim.git
+[submodule "vim/bundle/colorschemes"]
+	path = vim/bundle/colorschemes
+	url = https://github.com/flazz/vim-colorschemes.git
