@@ -132,7 +132,9 @@ if has("gui_running")
 
   " Sets the font and size
   set guifont=Source\ Code\ Pro:h13
-  set linespace=1
+  set linespace=2
+  set fillchars&
+  set fillchars-=vert:\|
 
   " Sets the percent transparency
   " set transparency=10
