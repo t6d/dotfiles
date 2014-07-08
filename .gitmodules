@@ -64,3 +64,6 @@
 [submodule "vim/bundle/colorschemes"]
 	path = vim/bundle/colorschemes
 	url = https://github.com/flazz/vim-colorschemes.git
+[submodule "vim/bundle/splitjoin"]
+	path = vim/bundle/splitjoin
+	url = https://github.com/AndrewRadev/splitjoin.vim.git
