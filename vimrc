@@ -280,5 +280,7 @@ nnoremap <silent> <Leader>ct :!bundle list --paths=true \| xargs ctags --extra=+
 let g:vroom_zeus=1
 
 " CtrlP
-let g:ctrlp_user_command = 'ag %s -l --follow --nocolor -g ""'
+if executable("ag")
+  let g:ctrlp_user_command = 'ag %s -l --follow --nocolor -g ""'
+endif
 
