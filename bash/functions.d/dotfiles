@@ -2,7 +2,7 @@
 
 ##
 # Allows to edit, reload and update the dotfiles
-# Params: cd|install|link|path|pull|relative-path|reload|update
+# Params: cd|install|link|path|fetch|relative-path|reload|update
 #
 dotfiles() {
   _dotfiles_backup() {
@@ -21,7 +21,7 @@ dotfiles() {
       source ~/.bash_profile
     ;;
 
-    pull)
+    fetch)
       (
         dotfiles cd
         git pull --quiet
@@ -30,12 +30,12 @@ dotfiles() {
     ;;
 
     update)
-      dotfiles pull
+      dotfiles fetch
       dotfiles reload
     ;;
 
     install)
-      dotfiles pull
+      dotfiles fetch
       dotfiles link
       dotfiles reload
     ;;
@@ -70,7 +70,7 @@ dotfiles() {
     ;;
 
     *)
-      echo "Usage: dotfiles cd|install|link|path|pull|relative-path|reload|update"
+      echo "Usage: dotfiles cd|fetch|install|link|path|relative-path|reload|update"
     ;;
   esac
 
@@ -85,7 +85,7 @@ _dotfiles() {
 
   [[ $cword > 1 ]] && return 0
 
-  COMPREPLY=( $(compgen -W "cd install link path pull relative-path reload update" -- $cur) )
+  COMPREPLY=( $(compgen -W "cd fetch install link path relative-path reload update" -- $cur) )
 }
 complete -F _dotfiles dotfiles
 
