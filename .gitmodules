@@ -33,19 +33,19 @@
 	url = https://github.com/pangloss/vim-javascript.git
 [submodule "vim/bundle/tabular"]
 	path = vim/bundle/tabular
-	url = git://github.com/godlygeek/tabular.git
+	url = https://github.com/godlygeek/tabular.git
 [submodule "vim/bundle/ag"]
 	path = vim/bundle/ag
 	url = https://github.com/rking/ag.vim
 [submodule "vim/bundle/endwise"]
 	path = vim/bundle/endwise
-	url = git@github.com:tpope/vim-endwise.git
+	url = https://github.com/tpope/vim-endwise.git
 [submodule "vim/bundle/surround"]
 	path = vim/bundle/surround
-	url = git@github.com:tpope/vim-surround.git
+	url = https://github.com/tpope/vim-surround.git
 [submodule "vim/bundle/vim-tmux-navigator"]
 	path = vim/bundle/vim-tmux-navigator
-	url = git@github.com:christoomey/vim-tmux-navigator.git
+	url = https://github.com/christoomey/vim-tmux-navigator.git
 [submodule "vim/bundle/vim-blockle"]
 	path = vim/bundle/vim-blockle
 	url = https://github.com/jgdavey/vim-blockle.git
