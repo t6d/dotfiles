@@ -58,10 +58,6 @@ vmap # :<C-u>call <SID>VSetSearch()<CR>??<CR>
 nmap <leader>* :execute 'noautocmd vimgrep /\V' . substitute(escape(expand("<cword>"), '\'), '\n', '\\n', 'g') . '/ **'<CR>
 vmap <leader>* :<C-u>call <SID>VSetSearch()<CR>:execute 'noautocmd vimgrep /' . @/ . '/ **'<CR>
 
-" Scrolling
-nnoremap <C-E> 3<C-E>
-nnoremap <C-Y> 3<C-Y>
-
 " Editor settings
 set linebreak
 set number
