@@ -22,6 +22,7 @@ Plugin 'godlygeek/tabular'
 Plugin 'honza/vim-snippets'
 Plugin 'kana/vim-textobj-user'
 Plugin 'kien/ctrlp.vim'
+Plugin 'kokakolako/vim-hemisu-airline'
 Plugin 'marcweber/vim-addon-mw-utils' " vim-snipmate dependency
 Plugin 'mattn/emmet-vim'
 Plugin 'nelstrom/vim-textobj-rubyblock'
@@ -151,7 +152,7 @@ if has("gui_running")
   set guioptions-=L
 
   " Sets the font and size
-  set guifont=Source\ Code\ Pro:h13
+  set guifont=Source\ Code\ Pro\ for\ Powerline:h13
   set linespace=2
   set fillchars&
   set fillchars-=vert:\|
@@ -160,6 +161,9 @@ if has("gui_running")
   " set transparency=10
   set background=light
   colorscheme hemisu
+
+  " Airline theme
+  let g:airline_theme='hemisu_airline'
 endif
 
 "
