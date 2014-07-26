@@ -11,6 +11,7 @@ call vundle#begin()
 Plugin 'gmarik/Vundle.vim'
 
 Plugin 'andrewradev/splitjoin.vim'
+Plugin 'bling/vim-airline'
 Plugin 'christoomey/vim-tmux-navigator'
 Plugin 'ecomba/vim-ruby-refactoring'
 Plugin 'edsono/vim-matchit'
@@ -303,3 +304,5 @@ if executable("ag")
   let g:ctrlp_user_command = 'ag %s -l --follow --nocolor -g ""'
 endif
 
+" Airline
+let g:airline_powerline_fonts = 1
