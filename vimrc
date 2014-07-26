@@ -5,12 +5,6 @@
 " Use vim, not vi, settings!
 set nocompatible
 
-" Pathogen
-" filetype off will force reloading after pathogen loaded
-filetype off
-call pathogen#infect()
-call pathogen#helptags()
-
 " Macros
 runtime macros/matchit.vim " required by textobj-rubyblock
 
