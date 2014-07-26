@@ -159,9 +159,6 @@ if has("gui_running")
   " set transparency=10
   set background=light
   colorscheme hemisu
-
-  " Airline theme
-  let g:airline_theme='hemisu_airline'
 endif
 
 "
@@ -308,4 +305,8 @@ endif
 
 " Airline
 let g:airline_powerline_fonts = 1
-let g:airline_theme='powerlineish'
+if has("gui_running")
+  let g:airline_theme='light'
+else
+  let g:airline_theme='powerlineish'
+endif
