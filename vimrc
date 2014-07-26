@@ -5,11 +5,17 @@
 " Use vim, not vi, settings!
 set nocompatible
 
-" Macros
-runtime macros/matchit.vim " required by textobj-rubyblock
+" Setup vundle
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+Plugin 'gmarik/Vundle.vim'
+call vundle#end()
 
 " Generic settings
 filetype plugin indent on
+
+" Macros
+runtime macros/matchit.vim " required by textobj-rubyblock
 
 " Cmdline + Statusline
 set cmdheight=1
