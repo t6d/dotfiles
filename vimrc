@@ -10,21 +10,24 @@ set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 Plugin 'gmarik/Vundle.vim'
 
-Plugin 'SirVer/ultisnips'
 Plugin 'andrewradev/splitjoin.vim'
 Plugin 'christoomey/vim-tmux-navigator'
 Plugin 'ecomba/vim-ruby-refactoring'
 Plugin 'edsono/vim-matchit'
 Plugin 'ervandew/supertab'
 Plugin 'flazz/vim-colorschemes'
+Plugin 'garbas/vim-snipmate'
 Plugin 'godlygeek/tabular'
+Plugin 'honza/vim-snippets'
 Plugin 'kana/vim-textobj-user'
 Plugin 'kien/ctrlp.vim'
+Plugin 'marcweber/vim-addon-mw-utils' " vim-snipmate dependency
 Plugin 'mattn/emmet-vim'
 Plugin 'nelstrom/vim-textobj-rubyblock'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'scrooloose/nerdtree'
 Plugin 'skalnik/vim-vroom'
+Plugin 'tomtom/tlib_vim' " vim-snipmate dependency
 Plugin 'tpope/vim-endwise'
 Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-rails'
