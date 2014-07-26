@@ -5,17 +5,37 @@
 " Use vim, not vi, settings!
 set nocompatible
 
-" Pathogen
-" filetype off will force reloading after pathogen loaded
-filetype off
-call pathogen#infect()
-call pathogen#helptags()
+" Setup vundle
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+Plugin 'gmarik/Vundle.vim'
 
-" Macros
-runtime macros/matchit.vim " required by textobj-rubyblock
+Plugin 'SirVer/ultisnips'
+Plugin 'andrewradev/splitjoin.vim'
+Plugin 'christoomey/vim-tmux-navigator'
+Plugin 'ecomba/vim-ruby-refactoring'
+Plugin 'edsono/vim-matchit'
+Plugin 'ervandew/supertab'
+Plugin 'flazz/vim-colorschemes'
+Plugin 'godlygeek/tabular'
+Plugin 'kana/vim-textobj-user'
+Plugin 'kien/ctrlp.vim'
+Plugin 'mattn/emmet-vim'
+Plugin 'nelstrom/vim-textobj-rubyblock'
+Plugin 'scrooloose/nerdcommenter'
+Plugin 'scrooloose/nerdtree'
+Plugin 'skalnik/vim-vroom'
+Plugin 'tpope/vim-endwise'
+Plugin 'tpope/vim-fugitive'
+Plugin 'tpope/vim-rails'
+Plugin 'vim-ruby/vim-ruby'
+call vundle#end()
 
 " Generic settings
 filetype plugin indent on
+
+" Macros
+runtime macros/matchit.vim " required by textobj-rubyblock
 
 " Cmdline + Statusline
 set cmdheight=1

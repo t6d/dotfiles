@@ -1,6 +1,10 @@
 .DS_Store
-*.swp
-vim/.*
-tags
 .netrwhist
+*.swp
+
+tags
+vim/.*
+vim/bundle/*
+vim/UltiSnips/
+vim/spell/
 
