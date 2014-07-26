@@ -1,6 +1,4 @@
 "
-" -- Settings --
-"
 
 " Use vim, not vi, settings!
 set nocompatible
@@ -310,3 +308,4 @@ endif
 
 " Airline
 let g:airline_powerline_fonts = 1
+let g:airline_theme='powerlineish'
