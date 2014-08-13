@@ -28,6 +28,7 @@ Plugin 'scrooloose/nerdtree'
 Plugin 'skalnik/vim-vroom'
 Plugin 'tpope/vim-endwise'
 Plugin 'tpope/vim-fugitive'
+Plugin 'tpope/vim-markdown'
 Plugin 'tpope/vim-rails'
 Plugin 'vim-ruby/vim-ruby'
 call vundle#end()
