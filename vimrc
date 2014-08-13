@@ -309,3 +309,6 @@ if has("gui_running")
 else
   let g:airline_theme='powerlineish'
 endif
+
+" Markdown
+let g:markdown_fenced_languages = ['css', 'erb=eruby', 'javascript', 'js=javascript', 'json=javascript', 'python', 'ruby', 'sass', 'xml']
