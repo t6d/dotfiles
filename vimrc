@@ -15,6 +15,7 @@ Plugin 'christoomey/vim-tmux-navigator'
 Plugin 'ecomba/vim-ruby-refactoring'
 Plugin 'edsono/vim-matchit'
 Plugin 'ervandew/supertab'
+Plugin 'exu/pgsql.vim'
 Plugin 'flazz/vim-colorschemes'
 Plugin 'godlygeek/tabular'
 Plugin 'honza/vim-snippets'
@@ -312,4 +313,4 @@ else
 endif
 
 " Markdown
-let g:markdown_fenced_languages = ['css', 'erb=eruby', 'javascript', 'js=javascript', 'json=javascript', 'python', 'ruby', 'sass', 'xml']
+let g:markdown_fenced_languages = ['css', 'erb=eruby', 'html', 'javascript', 'js=javascript', 'json=javascript', 'python', 'ruby', 'sass', 'xml']
