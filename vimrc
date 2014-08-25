@@ -16,7 +16,6 @@ Plugin 'ecomba/vim-ruby-refactoring'
 Plugin 'edsono/vim-matchit'
 Plugin 'ervandew/supertab'
 Plugin 'exu/pgsql.vim'
-Plugin 'fatih/vim-go'
 Plugin 'flazz/vim-colorschemes'
 Plugin 'godlygeek/tabular'
 Plugin 'honza/vim-snippets'
@@ -34,6 +33,10 @@ Plugin 'tpope/vim-markdown'
 Plugin 'tpope/vim-rails'
 Plugin 'tpope/vim-surround'
 Plugin 'vim-ruby/vim-ruby'
+
+if !empty($GOPATH)
+  Plugin 'fatih/vim-go'
+endif
 call vundle#end()
 
 " Generic settings
