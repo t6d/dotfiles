@@ -303,6 +303,7 @@ nnoremap <silent> <Leader>ct :!bundle list --paths=true \| xargs ctags --extra=+
 
 " Vroom
 let g:vroom_zeus=1
+let g:vroom_use_vimux=1
 
 " CtrlP
 if executable("ag")
