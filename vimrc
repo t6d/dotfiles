@@ -321,3 +321,45 @@ endif
 
 " Markdown
 let g:markdown_fenced_languages = ['css', 'erb=eruby', 'html', 'javascript', 'js=javascript', 'json=javascript', 'python', 'ruby', 'sass', 'xml']
+
+" Vimux
+command! VimuxVSplit :call VimuxOpenRunnerWithOptions(50, 'h')
+command! -nargs=* VimuxRunCommandInVSplit :call VimuxOpenRunnerWithOptions(50, 'h') | call VimuxRunCommand(<args>)
+
+function! VimuxOpenRunnerWithOptions(height, orientation)
+  " Cache Variables
+  if exists('g:VimuxHeight')
+    let default_height = g:VimuxHeight
+  endif
+
+  if exists('g:VimuxOrientation')
+    let default_orientation = g:VimuxOrientation
+  endif
+
+  let g:VimuxHeight = a:height
+  let g:VimuxOrientation = a:orientation
+  call VimuxOpenRunner()
+
+  " Reset Variables
+  if exists('default_height')
+    let g:VimuxHeight = default_height
+  else
+    unlet g:VimuxHeight
+  endif
+
+  if exists('default_orientation')
+    let g:VimuxOrientation = default_orientation
+  else
+    unlet g:VimuxOrientation
+  endif
+endfunction
+
+function! VimuxPasteSelection()
+call VimuxOpenRunner()
+call VimuxSendText(escape(substitute(@v, "\n\\\%$", "", "+"), "$"))
+call VimuxSendKeys("Enter")
+endfunction
+
+vmap <silent> <Leader>V "vy :call VimuxPasteSelection()<CR>
+nmap <silent> <Leader>V :y v \| call VimuxPasteSelection()<CR>
+nmap <silent> <Leader>v :%y v \| call VimuxPasteSelection()<CR>
