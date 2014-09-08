@@ -359,5 +359,6 @@ call VimuxSendKeys("Enter")
 endfunction
 
 vmap <silent> <Leader>V "vy :call VimuxPasteSelection()<CR>
+vmap <silent> <Leader>v "vy :call VimuxPasteSelection()<CR>
 nmap <silent> <Leader>V :y v \| call VimuxPasteSelection()<CR>
 nmap <silent> <Leader>v :%y v \| call VimuxPasteSelection()<CR>
