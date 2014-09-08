@@ -1,5 +1,3 @@
-"
-
 " Use vim, not vi, settings!
 set nocompatible
 
@@ -10,7 +8,7 @@ Plugin 'gmarik/Vundle.vim'
 
 Plugin 'SirVer/ultisnips'
 Plugin 'andrewradev/splitjoin.vim'
-Plugin 'benmills/vimux'
+Plugin 't6d/vimux'
 Plugin 'bling/vim-airline'
 Plugin 'christoomey/vim-tmux-navigator'
 Plugin 'ecomba/vim-ruby-refactoring'
@@ -356,7 +354,7 @@ endfunction
 
 function! VimuxPasteSelection()
 call VimuxOpenRunner()
-call VimuxSendText(escape(substitute(@v, "\n\\\%$", "", "+"), "$"))
+call VimuxSendText(substitute(@v, "\n\\\%$", "", "+"))
 call VimuxSendKeys("Enter")
 endfunction
 
