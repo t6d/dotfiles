@@ -276,7 +276,7 @@ nnoremap <silent> <leader>src :source ~/.vimrc<CR>
 nnoremap <silent> <leader>ewd :edit `pwd`<CR>
 
 " Editing ultisnips
-nnoremap <silent> <leader>se :call UltiSnipsEdit()<cr>
+nnoremap <silent> <leader>se :UltiSnipsEdit<cr>
 
 " Indentation key-bindings
 vmap <Tab> >gv
