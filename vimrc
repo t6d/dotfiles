@@ -323,6 +323,9 @@ endif
 " Markdown
 let g:markdown_fenced_languages = ['css', 'erb=eruby', 'html', 'javascript', 'js=javascript', 'json=javascript', 'python', 'ruby', 'sass', 'xml']
 
+" UltiSnips
+let g:UltiSnipsEditSplit = "vertical"
+
 " Vimux
 command! VimuxVSplit :call VimuxOpenRunnerWithOptions(50, 'h')
 command! -nargs=* VimuxRunCommandInVSplit :call VimuxOpenRunnerWithOptions(50, 'h') | call VimuxRunCommand(<args>)
