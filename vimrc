@@ -299,6 +299,20 @@ nnoremap <silent> <Leader>hs :noh<CR>
 " Ctags
 nnoremap <silent> <Leader>ct :!bundle list --paths=true \| xargs ctags --extra=+f --exclude=.git --exclude=log -R *<CR><CR>
 
+" Section jumping in TeX Documents
+autocmd Syntax rnoweb,tex noremap <buffer> <silent> ]] :<c-u>call TexJump2Section( v:count1, '' )<CR>
+autocmd Syntax rnoweb,tex noremap <buffer> <silent> [[ :<c-u>call TexJump2Section( v:count1, 'b' )<CR>
+function! TexJump2Section( cnt, dir )
+  let i = 0
+  let pat = '^\s*\\\(part\|chapter\|\(sub\)*section\|paragraph\)\>\|\%$\|\%^'
+   let flags = 'W' . a:dir
+   while i < a:cnt && search( pat, flags ) > 0
+     let i = i+1
+   endwhile
+   " Store the pattern in the search register
+   " let @/ = pat
+ endfunction
+
 "
 " -- Configuration options for plugins --
 "
