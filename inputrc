@@ -12,3 +12,4 @@ $if mode=vi
   "\e[B": history-search-forward
 $endif
 
+Control-f: clear-screen
