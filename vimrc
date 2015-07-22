@@ -320,6 +320,7 @@ endfunction
 " Vroom
 let g:vroom_zeus=1
 let g:vroom_use_vimux=1
+let g:vroom_test_unit_command='testrb'
 
 " CtrlP
 if executable("ag")
