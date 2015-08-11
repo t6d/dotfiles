@@ -7,4 +7,4 @@ vim/.*
 vim/bundle/*
 vim/UltiSnips/
 vim/spell/
-
+vim/sessions/
