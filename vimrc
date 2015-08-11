@@ -38,6 +38,8 @@ Plugin 'tpope/vim-rails'
 Plugin 'tpope/vim-salve'
 Plugin 'tpope/vim-surround'
 Plugin 'vim-ruby/vim-ruby'
+Plugin 'xolox/vim-misc'
+Plugin 'xolox/vim-session'
 
 if !empty($GOPATH)
   Plugin 'fatih/vim-go'
@@ -385,3 +387,6 @@ vmap <silent> <Leader>V "vy :call VimuxPasteSelection()<CR>
 vmap <silent> <Leader>v "vy :call VimuxPasteSelection()<CR>
 nmap <silent> <Leader>v :y v \| call VimuxPasteSelection()<CR>
 nmap <silent> <Leader>V :%y v \| call VimuxPasteSelection()<CR>
+
+" Vim Session
+let g:session_autosave = 'no'
