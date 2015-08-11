@@ -390,3 +390,4 @@ nmap <silent> <Leader>V :%y v \| call VimuxPasteSelection()<CR>
 
 " Vim Session
 let g:session_autosave = 'no'
+let g:restore_autoload = 'yes'
