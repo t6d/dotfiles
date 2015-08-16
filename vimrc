@@ -38,6 +38,7 @@ Plugin 'tpope/vim-rails'
 Plugin 'tpope/vim-salve'
 Plugin 'tpope/vim-surround'
 Plugin 'vim-ruby/vim-ruby'
+Plugin 'vim-scripts/paredit.vim'
 Plugin 'xolox/vim-misc'
 Plugin 'xolox/vim-session'
 
