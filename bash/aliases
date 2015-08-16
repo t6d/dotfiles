@@ -17,6 +17,8 @@ alias ga="git add"
 alias gc="git commit"
 alias gco="git checkout"
 alias gd="git diff"
+alias gl="git log"
+alias glo="git log --oneline"
 alias gs="git status"
 
 # Auto Completion
