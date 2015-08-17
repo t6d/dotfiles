@@ -379,9 +379,11 @@ function! VimuxOpenRunnerWithOptions(height, orientation)
 endfunction
 
 function! VimuxPasteSelection()
-call VimuxOpenRunner()
-call VimuxSendText(substitute(@v, "\n\\\%$", "", "+"))
-call VimuxSendKeys("Enter")
+  if !exists("g:VimuxRunnerIndex")
+    call VimuxOpenRunner()
+  end
+  call VimuxSendText(substitute(@v, "\n\\\%$", "", "+"))
+  call VimuxSendKeys("Enter")
 endfunction
 
 vmap <silent> <Leader>V "vy :call VimuxPasteSelection()<CR>
