@@ -1,7 +1,7 @@
 [include]
   path = ~/.gitconfig.local
 [push]
-  default = current
+  default = upstream
 [alias]
   ci = commit -v
   cia = commit -v -a
