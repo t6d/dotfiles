@@ -180,7 +180,7 @@ endif
 "
 
 " Add highlighting for Rspec keywords
-autocmd BufNewFile,BufRead *_spec.rb syntax keyword rubyRspec describe context it xit specify it_should_behave_like before after around setup subject its shared_examples_for shared_context let let! to to_not not_to
+autocmd BufNewFile,BufRead *_spec.rb syntax keyword rubyRspec describe context it xit specify it_should_behave_like before after around setup subject its shared_examples_for shared_context let let! to to_not not_to expect
 autocmd BufNewFile,BufRead *_spec.rb highlight link rubyRspec Keyword
 
 " Add highlighting for additional Minitest Assertions
