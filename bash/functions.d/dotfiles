@@ -29,12 +29,7 @@ dotfiles() {
       )
     ;;
 
-    update)
-      dotfiles fetch
-      dotfiles reload
-    ;;
-
-    install)
+    install|update)
       dotfiles fetch
       dotfiles link
       dotfiles reload
@@ -49,11 +44,16 @@ dotfiles() {
 
           for resource in "$relative_path"/*; do
             local resource_basename=$(basename "$resource")
+
             [[ "$resource_basename" == webinstall ]] && continue
+
             if [[ -f ".$resource_basename" || -d ".$resource_basename" ]]; then
               _dotfiles_backup ".$resource_basename"
             fi
-            ln -Ffs "$relative_path/$resource_basename" ".$resource_basename"
+
+            if [[ ! `readlink ".$resource_basename"` == "$relative_path/$resource_basename" ]]; then
+              ln -Ffs "$relative_path/$resource_basename" ".$resource_basename"
+            fi
           done
         else
           echo "Source directory could not be determined reliably." 1>&2
