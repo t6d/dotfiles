@@ -417,3 +417,28 @@ vmap <silent> <Leader>V "vy :call VimuxPasteSelection()<CR>
 vmap <silent> <Leader>v "vy :call VimuxPasteSelection()<CR>
 nmap <silent> <Leader>v :y v \| call VimuxPasteSelection()<CR>
 nmap <silent> <Leader>V :%y v \| call VimuxPasteSelection()<CR>
+
+function! SyntaxHighLightingForRegion(filetype, start, end, matchgroup) abort
+  let regionIdentifier='embedded'.toupper(a:filetype)
+  let group='textGroup'.toupper(a:filetype)
+  if exists('b:current_syntax')
+    let s:current_syntax=b:current_syntax
+    " Remove current syntax definition, as some syntax files (e.g. cpp.vim)
+    " do nothing if b:current_syntax is defined.
+    unlet b:current_syntax
+  endif
+  execute 'syntax include @'.group.' syntax/'.a:filetype.'.vim'
+  try
+    execute 'syntax include @'.group.' after/syntax/'.a:filetype.'.vim'
+  catch
+  endtry
+  if exists('s:current_syntax')
+    let b:current_syntax=s:current_syntax
+  else
+    unlet b:current_syntax
+  endif
+  let command='syntax region '.regionIdentifier.' matchgroup='.a:matchgroup.' start='.a:start.' end='.a:end.' contains=@'.group
+  execute command
+endfunction
+
+autocmd Syntax ruby call SyntaxHighLightingForRegion('eruby', '/\v\<\<-?ERB/', '/\v\s*ERB/', "SpecialComment")
