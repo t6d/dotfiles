@@ -14,6 +14,7 @@ Plugin 'ecomba/vim-ruby-refactoring'
 Plugin 'edsono/vim-matchit'
 Plugin 'ervandew/supertab'
 Plugin 'exu/pgsql.vim'
+Plugin 'FelikZ/ctrlp-py-matcher'
 Plugin 'flazz/vim-colorschemes'
 Plugin 'godlygeek/tabular'
 Plugin 'guns/vim-clojure-static'
@@ -358,6 +359,7 @@ let g:vroom_test_unit_command='testrb'
 if executable("ag")
   let g:ctrlp_user_command = 'ag %s -l --follow --nocolor -g ""'
 endif
+let g:ctrlp_match_func = { 'match': 'pymatcher#PyMatch' }
 
 " Airline
 let g:airline_powerline_fonts = 1
