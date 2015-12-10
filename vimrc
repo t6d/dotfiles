@@ -6,7 +6,9 @@ set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 Plugin 'gmarik/Vundle.vim'
 
+Plugin 'FelikZ/ctrlp-py-matcher'
 Plugin 'SirVer/ultisnips'
+Plugin 'airblade/vim-gitgutter'
 Plugin 'andrewradev/splitjoin.vim'
 Plugin 'bling/vim-airline'
 Plugin 'christoomey/vim-tmux-navigator'
@@ -14,7 +16,6 @@ Plugin 'ecomba/vim-ruby-refactoring'
 Plugin 'edsono/vim-matchit'
 Plugin 'ervandew/supertab'
 Plugin 'exu/pgsql.vim'
-Plugin 'FelikZ/ctrlp-py-matcher'
 Plugin 'flazz/vim-colorschemes'
 Plugin 'godlygeek/tabular'
 Plugin 'guns/vim-clojure-static'
