@@ -366,12 +366,12 @@ let g:ctrlp_match_func = { 'match': 'pymatcher#PyMatch' }
 
 " Airline
 let g:airline_powerline_fonts = 1
-let g:airline_section_y = ""
 let g:airline#extensions#branch#displayed_head_limit = 16
 if has("gui_running")
   let g:airline_theme='light'
 else
   let g:airline_theme='powerlineish'
+  let g:airline_section_y = ""
 endif
 
 " Markdown
