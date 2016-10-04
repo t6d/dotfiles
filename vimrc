@@ -150,12 +150,6 @@ set foldlevel=99
 set wildmode=longest,list,full
 set wildmenu
 
-" Use the damn hjkl keys
-noremap <up> <nop>
-noremap <down> <nop>
-noremap <left> <nop>
-noremap <right> <nop>
-
 " Use visual line scrolling
 "nnoremap j gj
 "nnoremap k gk
