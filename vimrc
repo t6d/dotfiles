@@ -188,7 +188,7 @@ autocmd BufNewFile,BufRead *_spec.rb syntax keyword rubyRspec describe context i
 autocmd BufNewFile,BufRead *_spec.rb highlight link rubyRspec Keyword
 
 " Add highlighting for additional Minitest Assertions
-autocmd BufNewFile,BufRead *_test.rb syntax keyword minitestAssertion assert assert_empty assert_equal assert_in_delta assert_in_epsilon assert_includes assert_instance_of assert_kind_of assert_match assert_nil assert_operator assert_output assert_predicate assert_raises assert_respond_to assert_same assert_send assert_silent assert_throws refute refute_empty refute_equal refute_in_delta refute_in_epsilon refute_includes refute_instance_of refute_kind_of refute_match refute_nil refute_operator refute_predicate refute_respond_to refute_same
+autocmd BufNewFile,BufRead *_test.rb syntax keyword minitestAssertion assert assert_empty assert_equal assert_in_delta assert_in_epsilon assert_includes assert_instance_of assert_kind_of assert_match assert_nil assert_operator assert_output assert_predicate assert_raises assert_respond_to assert_same assert_send assert_silent assert_throws refute refute_empty refute_equal refute_in_delta refute_in_epsilon refute_includes refute_instance_of refute_kind_of refute_match refute_nil refute_operator refute_predicate refute_respond_to refute_same assert_enqueued_jobs assert_enqueued_with assert_no_enqueued_jobs assert_no_performed_jobs assert_performed_jobs assert_performed_with
 autocmd BufNewFile,BufRead *_test.rb highlight link minitestAssertion Keyword
 
 " Set foldmethod to indent for Ruby files to increase performance
