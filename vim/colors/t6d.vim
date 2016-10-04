@@ -21,6 +21,7 @@ hi clear IncSearch
 hi clear NonText
 hi clear SpecialKey
 hi clear MatchParen
+hi clear Todo
 
 hi Normal       guibg=#000000   guifg=#ffffff
 hi LineNr       ctermfg=235     guifg=#262626
@@ -101,7 +102,9 @@ hi link DiffRemoved DiffDelete
 " Syntax Highlighting
 " ----------------------------------------------------------------------------
 
-hi Comment       ctermfg=240 guifg=#585858
+hi Comment       ctermfg=241 guifg=#585858
+hi Todo          ctermfg=246 guifg=#ffaf00
+
 hi Type          ctermfg=214 guifg=#ffaf00
 hi Identifier    ctermfg=39  guifg=#00afff
 hi Keyword       ctermfg=196 guifg=#ff0000
