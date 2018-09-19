@@ -75,3 +75,6 @@ __configure_prompt; unset __configure_prompt
 [[ -x `which brew` && -f `brew --prefix`/share/bash_completion/bash_completion ]] && \
   source `brew --prefix`/share/bash_completion/bash_completion
 
+# Load SSH identities
+[[ -x `which ssh-add` ]] && ssh-add -A 2> /dev/null
+
