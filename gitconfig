@@ -16,6 +16,7 @@
   tree = log --graph --decorate --pretty=oneline --abbrev-commit
   ap = add -p
   current-branch = rev-parse --symbolic-full-name --abbrev-ref HEAD
+  cleanup-merged-branches = "!git branch --merged master | grep  -v '\\*\\|master\\|develop' | xargs -n 1 git branch -d"
 [color]
   ui = true
 [color "status"]
@@ -23,22 +24,32 @@
   changed = yellow
   untracked = magenta
 [merge]
-  tool = Kaleidoscope
+	tool = Kaleidoscope
 [difftool "Kaleidoscope"]
-  cmd = ksdiff --partial-changeset --relative-path \"$MERGED\" -- \"$LOCAL\" \"$REMOTE\"
+	cmd = ksdiff --partial-changeset --relative-path \"$MERGED\" -- \"$LOCAL\" \"$REMOTE\"
 [diff]
-  tool = Kaleidoscope
+	tool = Kaleidoscope
+	algorithm = patience
 [difftool]
-  prompt = false
+	prompt = false
 [mergetool "Kaleidoscope"]
-  cmd = ksdiff --merge --output \"$MERGED\" --base \"$BASE\" -- \"$LOCAL\" --snapshot \"$REMOTE\" --snapshot
-  trustExitCode = true
+	trustexitcode = true
+	cmd = ksdiff --merge --output \"$MERGED\" --base \"$BASE\" -- \"$LOCAL\" --snapshot \"$REMOTE\" --snapshot
 [mergetool]
-  prompt = false
+	prompt = false
 [mergetool "splice"]
   cmd = "vim -f $BASE $LOCAL $REMOTE $MERGED -c 'SpliceInit'"
   trustExitCode = true
 [filter "lfs"]
-	clean = git-lfs clean %f
-	smudge = git-lfs smudge %f
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
 	required = true
+[core]
+	excludesfile = ~/.gitignore.global
+	commitGraph = true
+[protocol]
+	version = 2
+[credential]
+	helper = osxkeychain
+[gc]
+	writeCommitGraph = true
