@@ -1,7 +1,0 @@
-#!/usr/bin/env bash
-
-if [[ -d ~/.bash/functions.d ]]; then
-  for file in $(find ~/.bash/functions.d/ -type f); do
-    source "$file"
-  done
-fi

@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/zsh
 
 # --------------------------------------------------------------------------
 # Helpers
@@ -67,26 +67,11 @@ LS_COLORS=$LS_COLORS:"*.c=01;31:*.cpp=01;31:*.h=01;31:*.m=01;31:*.rb=01;31"
 LS_COLORS=$LS_COLORS:"*.rb=01;31:*.xcodeproj=01;31"
 export LS_COLORS
 
-# -- Word-wise erasing -----------------------------------------------------
-
-if shell_is_interactive; then
-  stty werase undef
-  bind '"\C-w":backward-kill-word'
-fi
-
-# -- History ---------------------------------------------------------------
-
-shopt -s histappend
-export HISTFILESIZE=1048576
-export HISTSIZE=100000
-export HISTCONTROL=ignoredups:erasedups
-export PROMPT_COMMAND="history -a; history -c; history -r"
-
 # --------------------------------------------------------------------------
 # System specific settings
 # --------------------------------------------------------------------------
 
-[[ -f ~/.bash/env.d/$(uname) ]] && source ~/.bash/env.d/$(uname)
+[[ -f ~/.env.d/$(uname) ]] && source ~/.env.d/$(uname)
 
 # --------------------------------------------------------------------------
 # Setup rbenv

@@ -3,8 +3,8 @@
 *.swp
 
 tags
-vim/.*
-vim/bundle/*
-vim/UltiSnips/
-vim/spell/
-vim/sessions/
+lib/vim/.*
+lib/vim/bundle/*
+lib/vim/UltiSnips/
+lib/vim/spell/
+lib/vim/sessions/
