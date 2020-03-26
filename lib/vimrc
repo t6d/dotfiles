@@ -126,7 +126,7 @@ set noswapfile
 " Syntax highlighting
 set t_Co=256
 syntax on
-colorscheme t6d
+colorscheme monokai_pro
 
 " Invisible characters
 set list
@@ -360,7 +360,7 @@ let g:airline#extensions#branch#displayed_head_limit = 16
 if has("gui_running")
   let g:airline_theme='light'
 else
-  let g:airline_theme='powerlineish'
+  let g:airline_theme='base16_monokai'
   let g:airline_section_y = ""
 endif
 
