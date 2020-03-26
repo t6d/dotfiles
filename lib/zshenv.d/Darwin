@@ -40,10 +40,6 @@ fi
 [[ -d /Applications/Postgres.app ]] && \
   __shift_path /Applications/Postgres.app/Contents/MacOS/bin
 
-# -- Editor settings -------------------------------------------------------
-
-export EDITOR="vim -f"
-
 # -- Nix -------------------------------------------------------------------
 
 if [ -e /Users/t6d/.nix-profile/etc/profile.d/nix.sh ]; then . /Users/t6d/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer

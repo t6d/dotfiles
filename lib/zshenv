@@ -71,7 +71,7 @@ export LS_COLORS
 # System specific settings
 # --------------------------------------------------------------------------
 
-[[ -f ~/.env.d/$(uname) ]] && source ~/.env.d/$(uname)
+[[ -f ~/.zshenv.d/$(uname) ]] && source ~/.zshenv.d/$(uname)
 
 # --------------------------------------------------------------------------
 # Setup rbenv
@@ -98,3 +98,13 @@ unset __add_path
 unset __remove_path
 unset __shift_path
 
+# --------------------------------------------------------------------------
+# Editor
+# --------------------------------------------------------------------------
+
+# Preferred editor for local and remote sessions
+if [[ -n $SSH_CONNECTION ]]; then
+  export EDITOR='vim -f'
+else
+  export EDITOR='code -w'
+fi
