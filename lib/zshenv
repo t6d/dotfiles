@@ -106,5 +106,5 @@ unset __shift_path
 if [[ -n $SSH_CONNECTION ]]; then
   export EDITOR='vim -f'
 else
-  export EDITOR='code -w'
+  export EDITOR='vim -f'
 fi
