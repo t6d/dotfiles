@@ -1,3 +1,5 @@
+require 'pathname'
+
 module Helpers
   ConfigurationFile = Struct.new(:source) do
     def target
@@ -20,6 +22,14 @@ module Helpers
     end
   end
 
+  def each_configuration_file_symlink
+    pattern = File.join(File.dirname(__FILE__), 'lib', '*')
+    symlinks = Dir.glob(File.expand_path('.*', '~/')).select do |path| 
+      Pathname(path).symlink? && Pathname(path).readlink.fnmatch?(pattern)
+    end
+    symlinks.each { |l| yield l }
+  end
+
   def ask(question, possible_answers = DEFAULT_ANSWERS)
     STDOUT.print "#{question} [#{possible_answers.keys.join}] "
 
@@ -38,4 +48,10 @@ task "install" do
     next if file.exists? && !ask("Replace #{file.target}?")
     symlink(file.source, file.target, force: true)
   end
+  sh 'KEEP_ZSHRC=yes sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"'
+end
+
+task "uninstall" do
+  each_configuration_file_symlink { |f| rm f }
+  rm_r File.expand_path("~/.oh-my-zsh")
 end
