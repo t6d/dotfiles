@@ -77,9 +77,7 @@ export LS_COLORS
 # Setup rbenv
 # --------------------------------------------------------------------------
 
-if [[ -d "$HOME/.rbenv" ]]; then
-  __shift_path "$HOME/.rbenv/bin"
-  __shift_path "$HOME/.rbenv/shims"
+if type rbenv > /dev/null; then
   eval "$(rbenv init -)"
 fi
 
