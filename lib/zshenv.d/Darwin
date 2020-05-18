@@ -13,7 +13,7 @@
 __shift_path /usr/local/bin
 
 # Java
-if [[ -d $(/usr/libexec/java_home) ]]; then
+if /usr/libexec/java_home > /dev/null 2>&1; then
   export JAVA_HOME=$(/usr/libexec/java_home)
   __shift_path $JAVA_HOME/bin
 fi
