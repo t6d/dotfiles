@@ -36,13 +36,6 @@ if [[ -d /usr/local/share/npm ]]; then
   __shift_path /usr/local/share/npm/bin
 fi
 
-# Go
-if [[ -d /usr/local/opt/go/libexec ]]; then
-  export GOPATH=~/Projects/Sandbox/Go
-  export GOROOT=/usr/local/opt/go/libexec
-  __shift_path $GOROOT/bin
-  __shift_path $GOPATH/bin
-fi
 
 # Postgres.app
 [[ -d /Applications/Postgres.app ]] && \
