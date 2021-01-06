@@ -48,6 +48,7 @@ task "install" do
     next if file.exists? && !ask("Replace #{file.target}?")
     symlink(file.source, file.target, force: true)
   end
+  sh 'vim +PlugInstall +qall'
   sh 'KEEP_ZSHRC=yes sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"'
 end
 
