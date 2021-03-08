@@ -1,0 +1,4 @@
+#!/usr/bin/env zsh
+
+yes | rake install
+
