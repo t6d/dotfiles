@@ -24,31 +24,45 @@
   changed = yellow
   untracked = magenta
 [merge]
-	tool = Kaleidoscope
+  tool = Kaleidoscope
 [difftool "Kaleidoscope"]
-	cmd = ksdiff --partial-changeset --relative-path \"$MERGED\" -- \"$LOCAL\" \"$REMOTE\"
+  cmd = ksdiff --partial-changeset --relative-path \"$MERGED\" -- \"$LOCAL\" \"$REMOTE\"
 [diff]
-	tool = Kaleidoscope
-	algorithm = patience
+  tool = Kaleidoscope
+  algorithm = patience
 [difftool]
-	prompt = false
+  prompt = false
 [mergetool "Kaleidoscope"]
-	trustexitcode = true
-	cmd = ksdiff --merge --output \"$MERGED\" --base \"$BASE\" -- \"$LOCAL\" --snapshot \"$REMOTE\" --snapshot
+  trustexitcode = true
+  cmd = ksdiff --merge --output \"$MERGED\" --base \"$BASE\" -- \"$LOCAL\" --snapshot \"$REMOTE\" --snapshot
 [mergetool]
-	prompt = false
+  prompt = false
 [mergetool "splice"]
   cmd = "vim -f $BASE $LOCAL $REMOTE $MERGED -c 'SpliceInit'"
   trustExitCode = true
 [filter "lfs"]
-	clean = git-lfs clean -- %f
-	smudge = git-lfs smudge -- %f
-	required = true
-	process = git-lfs filter-process
+  clean = git-lfs clean -- %f
+  smudge = git-lfs smudge -- %f
+  required = true
+  process = git-lfs filter-process
 [core]
-	excludesfile = ~/.gitignore.global
-	commitGraph = true
+  excludesfile = ~/.gitignore.global
+  commitGraph = true
 [protocol]
-	version = 2
+  version = 2
 [gc]
-	writeCommitGraph = true
+  writeCommitGraph = true
+[user]
+  name = Konstantin Tennhard
+  email = konstantin.tennhard@shopify.com
+[core]
+  pager = delta
+[interactive]
+  diffFilter = delta --color-only
+[delta]
+  features = side-by-side line-numbers decorations
+  whitespace-error-style = 22 reverse
+[delta "decorations"]
+  commit-decoration-style = bold yellow box ul
+  file-style = bold yellow ul
+  file-decoration-style = none
