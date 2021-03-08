@@ -3,7 +3,7 @@
 # --------------------------------------------------------------------------
 
 # Path to your oh-my-zsh installation.
-export ZSH="/Users/t6d/.oh-my-zsh"
+export ZSH="$HOME/.oh-my-zsh/"
 
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
 ZSH_THEME="agnoster"
