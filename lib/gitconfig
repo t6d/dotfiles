@@ -54,7 +54,7 @@
   writeCommitGraph = true
 [user]
   name = Konstantin Tennhard
-  email = konstantin.tennhard@shopify.com
+  email = konstantin@tennhard.net
 [core]
   pager = delta
 [interactive]
