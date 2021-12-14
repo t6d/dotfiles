@@ -8,7 +8,6 @@ Plug 'FelikZ/ctrlp-py-matcher'
 Plug 'HerringtonDarkholme/yats.vim'
 Plug 'Quramy/tsuquyomi'
 Plug 'Shougo/vimproc.vim'
-Plug 'SirVer/ultisnips'
 Plug 'airblade/vim-gitgutter'
 Plug 'andrewradev/splitjoin.vim'
 Plug 'benmills/vimux'
@@ -281,9 +280,6 @@ nnoremap <silent> <leader>src :source ~/.vimrc<CR>
 
 " Edit working directory
 nnoremap <silent> <leader>ewd :edit `pwd`<CR>
-
-" Editing ultisnips
-nnoremap <silent> <leader>se :UltiSnipsEdit<cr>
 
 " Indentation key-bindings
 vmap <Tab> >gv
