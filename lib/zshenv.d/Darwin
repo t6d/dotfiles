@@ -36,7 +36,6 @@ if [[ -d /usr/local/share/npm ]]; then
   __shift_path /usr/local/share/npm/bin
 fi
 
-
 # Postgres.app
 [[ -d /Applications/Postgres.app ]] && \
   __shift_path /Applications/Postgres.app/Contents/MacOS/bin
@@ -44,6 +43,10 @@ fi
 # Python 2.7
 [[ -d /Users/t6d/Library/Python/2.7/bin ]] && \
   __shift_path /Users/t6d/Library/Python/2.7/bin
+
+# Homebrew
+[[ -d /opt/homebrew ]] && \
+  __shift_path /opt/homebrew/bin
 
 # -- Nix -------------------------------------------------------------------
 
