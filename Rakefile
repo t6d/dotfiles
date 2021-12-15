@@ -44,7 +44,7 @@ end
 include Helpers
 
 desc "Symlink configuration files, setup Oh My ZSH!, and install vim plugins"
-task install: ["install:configuration_files", "install:vim_plugins", "install:oh_my_zsh"]
+task install: ["install:configuration_files", "install:oh_my_zsh", "install:vim_plugins"]
 
 namespace :install do
   task :configuration_files do
@@ -54,12 +54,12 @@ namespace :install do
     end
   end
   
-  task :vim_plugins do
-    sh 'vim +PlugInstall +qall'
-  end
-
   task :oh_my_zsh do
     sh 'KEEP_ZSHRC=yes sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"'
+  end
+
+  task :vim_plugins do
+    sh 'vim +PlugInstall +qall'
   end
 end
 
@@ -69,5 +69,8 @@ end
 desc "Remove configuration files and uninstall Oh My ZSH!"
 task "uninstall" do
   each_configuration_file_symlink { |f| rm f }
-  rm_r File.expand_path("~/.oh-my-zsh")
+  File.expand_path("~/.oh-my-zsh").tap do |oh_my_zsh_installation_directory|
+    next unless File.directory?(oh_my_zsh_installation_directory)
+    rm_r oh_my_zsh_installation_directory 
+  end
 end
