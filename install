@@ -7,4 +7,4 @@ if [ `uname` = "Linux" ]; then
   popd
 fi
 
-yes | rake install
+yes | rake install:configuration_files install:oh_my_zsh
