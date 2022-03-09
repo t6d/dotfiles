@@ -23,35 +23,6 @@
   added = green
   changed = yellow
   untracked = magenta
-[merge]
-  tool = Kaleidoscope
-[difftool "Kaleidoscope"]
-  cmd = ksdiff --partial-changeset --relative-path \"$MERGED\" -- \"$LOCAL\" \"$REMOTE\"
-[diff]
-  tool = Kaleidoscope
-  algorithm = patience
-[difftool]
-  prompt = false
-[mergetool "Kaleidoscope"]
-  trustexitcode = true
-  cmd = ksdiff --merge --output \"$MERGED\" --base \"$BASE\" -- \"$LOCAL\" --snapshot \"$REMOTE\" --snapshot
-[mergetool]
-  prompt = false
-[mergetool "splice"]
-  cmd = "vim -f $BASE $LOCAL $REMOTE $MERGED -c 'SpliceInit'"
-  trustExitCode = true
-[filter "lfs"]
-  clean = git-lfs clean -- %f
-  smudge = git-lfs smudge -- %f
-  required = true
-  process = git-lfs filter-process
-[core]
-  excludesfile = ~/.gitignore.global
-  commitGraph = true
-[protocol]
-  version = 2
-[gc]
-  writeCommitGraph = true
 [core]
   pager = delta
 [interactive]
@@ -59,9 +30,15 @@
 [delta]
   features = side-by-side line-numbers decorations
   whitespace-error-style = 22 reverse
+  navigate = true
 [delta "decorations"]
   commit-decoration-style = bold yellow box ul
   file-style = bold yellow ul
   file-decoration-style = none
 [init]
-	defaultBranch = main
+  defaultBranch = main
+[filter "lfs"]
+  clean = git-lfs clean -- %f
+  smudge = git-lfs smudge -- %f
+  required = true
+  process = git-lfs filter-process
