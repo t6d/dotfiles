@@ -45,8 +45,10 @@ fi
   __shift_path /Users/t6d/Library/Python/2.7/bin
 
 # Homebrew
-[[ -d /opt/homebrew ]] && \
+if [[ -d /opt/homebrew ]]; then
   __shift_path /opt/homebrew/bin
+  eval $(/opt/homebrew/bin/brew shellenv)
+fi
 
 # -- Nix -------------------------------------------------------------------
 
