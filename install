@@ -1,6 +1,15 @@
 #!/usr/bin/env zsh
 
 if [ `uname` = "Linux" ]; then
+  mkdir -p ~/.config
+  which -s fish || sudo apt -y install fish
+
+  pushd `mktemp -d`
+  curl -sS https://starship.rs/install.sh > install-starship.sh
+  chmod +x install-starship.sh
+  ./install-starship.sh -y
+  popd
+
   pushd `mktemp -d`
   wget https://github.com/dandavison/delta/releases/download/0.6.0/git-delta_0.6.0_amd64.deb
   sudo dpkg -i git-delta_0.6.0_amd64.deb

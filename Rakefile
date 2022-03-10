@@ -17,7 +17,12 @@ module Helpers
 
     def remove
       return unless exists?
-      File.delete(target)
+
+      if File.directory?(source)
+        FileUtils.rm_r(target)
+      else
+        FileUtils.rm(target)
+      end
     end
 
     def exists?
