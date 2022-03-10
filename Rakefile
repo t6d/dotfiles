@@ -3,7 +3,21 @@ require 'pathname'
 module Helpers
   ConfigurationFile = Struct.new(:source) do
     def target
-      File.expand_path(File.join("~/", ".%s" % File.basename(source)))
+      case source
+      when /fish$/
+        File.expand_path(File.join("~/.config", File.basename(source)))
+      else
+        File.expand_path(File.join("~/", ".%s" % File.basename(source)))
+      end
+    end
+
+    def symlink
+      FileUtils.symlink(source, target)
+    end
+
+    def remove
+      return unless exists?
+      File.delete(target)
     end
 
     def exists?
@@ -17,14 +31,14 @@ module Helpers
   }
 
   def each_configuration_file
-    Dir.glob(File.expand_path('../lib/*', __FILE__)).each do |path| 
+    Dir.glob(File.expand_path('../lib/*', __FILE__)).each do |path|
       yield ConfigurationFile.new(path)
     end
   end
 
   def each_configuration_file_symlink
     pattern = File.join(File.dirname(__FILE__), 'lib', '*')
-    symlinks = Dir.glob(File.expand_path('.*', '~/')).select do |path| 
+    symlinks = Dir.glob(File.expand_path('.*', '~/')).select do |path|
       Pathname(path).symlink? && Pathname(path).readlink.fnmatch?(pattern)
     end
     symlinks.each { |l| yield l }
@@ -44,16 +58,17 @@ end
 include Helpers
 
 desc "Symlink configuration files, setup Oh My ZSH!, and install vim plugins"
-task install: ["install:configuration_files", "install:oh_my_zsh", "install:vim_plugins"]
+task install: ["install:configuration_files", "install:vim_plugins"]
 
 namespace :install do
   task :configuration_files do
     each_configuration_file do |file|
       next if file.exists? && !ask("Replace #{file.target}?")
-      symlink(file.source, file.target, force: true)
+      file.remove
+      file.symlink
     end
   end
-  
+
   task :oh_my_zsh do
     sh 'KEEP_ZSHRC=yes sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"'
   end
@@ -63,14 +78,7 @@ namespace :install do
   end
 end
 
-task "install" do
-end
-
 desc "Remove configuration files and uninstall Oh My ZSH!"
 task "uninstall" do
   each_configuration_file_symlink { |f| rm f }
-  File.expand_path("~/.oh-my-zsh").tap do |oh_my_zsh_installation_directory|
-    next unless File.directory?(oh_my_zsh_installation_directory)
-    rm_r oh_my_zsh_installation_directory 
-  end
 end
