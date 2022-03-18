@@ -28,3 +28,6 @@ function _dmg_compress -a source_path
     hdiutil convert -format ULMO "$source_path" -o "$temporary_path"
     mv "$temporary_path" "$source_path"
 end
+
+complete -f -c dmg -n "not __fish_seen_subcommand_from create compress" -a "create compress"
+complete -F -c dmg -n "__fish_seen_subcommand_from create compress"
