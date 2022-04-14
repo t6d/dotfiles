@@ -17,3 +17,7 @@ end
 if test -d ~/bin
     set -xg PATH ~/bin $PATH
 end
+
+if test -d ~/.yarn/bin
+    set -xg PATH ~/.yarn/bin $PATH
+end
