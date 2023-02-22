@@ -1,3 +1,3 @@
 if status is-interactive
-    # Commands to run in interactive sessions can go here
+ alias dokku "ssh dokku@dokku.t6d.dev"
 end
