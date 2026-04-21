@@ -1,19 +1,66 @@
-#!/usr/bin/env zsh
+#!/usr/bin/env bash
+set -euo pipefail
 
-if [ `uname` = "Linux" ]; then
-  mkdir -p ~/.config
-  which -s fish || sudo apt -y install fish
+has() { command -v "$1" >/dev/null 2>&1; }
 
-  pushd `mktemp -d`
-  curl -sS https://starship.rs/install.sh > install-starship.sh
-  chmod +x install-starship.sh
-  ./install-starship.sh -y
-  popd
+install_homebrew() {
+  if has brew; then return; fi
+  echo "==> Installing Homebrew"
+  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
-  pushd `mktemp -d`
-  wget https://github.com/dandavison/delta/releases/download/0.6.0/git-delta_0.6.0_amd64.deb
-  sudo dpkg -i git-delta_0.6.0_amd64.deb
-  popd
-fi
+  if [[ -x /opt/homebrew/bin/brew ]]; then
+    eval "$(/opt/homebrew/bin/brew shellenv)"
+  elif [[ -x /usr/local/bin/brew ]]; then
+    eval "$(/usr/local/bin/brew shellenv)"
+  fi
+}
 
-yes | rake install:configuration_files install:oh_my_zsh
+install_fish_mac() {
+  if has fish; then return; fi
+  echo "==> Installing fish"
+  brew install fish
+}
+
+install_fish_linux() {
+  if has fish; then return; fi
+  echo "==> Installing fish"
+  sudo apt-get update
+  sudo apt-get install -y fish
+}
+
+install_starship_linux() {
+  if has starship; then return; fi
+  echo "==> Installing starship"
+  curl -sS https://starship.rs/install.sh | sh -s -- -y
+}
+
+install_delta_linux() {
+  if has delta; then return; fi
+  echo "==> Installing git-delta"
+  local tmp
+  tmp="$(mktemp -d)"
+  ( cd "$tmp" \
+    && wget -q https://github.com/dandavison/delta/releases/download/0.6.0/git-delta_0.6.0_amd64.deb \
+    && sudo dpkg -i git-delta_0.6.0_amd64.deb )
+  rm -rf "$tmp"
+}
+
+mkdir -p ~/.config
+
+case "$(uname)" in
+  Darwin)
+    install_homebrew
+    install_fish_mac
+    ;;
+  Linux)
+    install_fish_linux
+    install_starship_linux
+    install_delta_linux
+    ;;
+  *)
+    echo "Unsupported OS: $(uname)" >&2
+    exit 1
+    ;;
+esac
+
+yes | rake install:configuration_files

@@ -62,7 +62,7 @@ end
 
 include Helpers
 
-desc "Symlink configuration files and setup Oh My ZSH!"
+desc "Symlink configuration files"
 task install: ["install:configuration_files"]
 
 namespace :install do
@@ -73,13 +73,9 @@ namespace :install do
       file.symlink
     end
   end
-
-  task :oh_my_zsh do
-    sh 'KEEP_ZSHRC=yes sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"'
-  end
 end
 
-desc "Remove configuration files and uninstall Oh My ZSH!"
+desc "Remove configuration file symlinks"
 task "uninstall" do
   each_configuration_file_symlink { |f| rm f }
 end
