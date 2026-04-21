@@ -1,48 +1,36 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+
 has() { command -v "$1" >/dev/null 2>&1; }
+
+install_linux_prereqs() {
+  echo "==> Installing Homebrew prerequisites (apt)"
+  sudo apt-get update
+  sudo apt-get install -y build-essential procps curl file git
+}
 
 install_homebrew() {
   if has brew; then return; fi
   echo "==> Installing Homebrew"
   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
-  if [[ -x /opt/homebrew/bin/brew ]]; then
-    eval "$(/opt/homebrew/bin/brew shellenv)"
-  elif [[ -x /usr/local/bin/brew ]]; then
-    eval "$(/usr/local/bin/brew shellenv)"
-  fi
+  for candidate in \
+    /opt/homebrew/bin/brew \
+    /usr/local/bin/brew \
+    /home/linuxbrew/.linuxbrew/bin/brew
+  do
+    if [[ -x "$candidate" ]]; then
+      eval "$("$candidate" shellenv)"
+      break
+    fi
+  done
 }
 
-install_fish_mac() {
-  if has fish; then return; fi
-  echo "==> Installing fish"
-  brew install fish
-}
-
-install_fish_linux() {
-  if has fish; then return; fi
-  echo "==> Installing fish"
-  sudo apt-get update
-  sudo apt-get install -y fish
-}
-
-install_starship_linux() {
-  if has starship; then return; fi
-  echo "==> Installing starship"
-  curl -sS https://starship.rs/install.sh | sh -s -- -y
-}
-
-install_delta_linux() {
-  if has delta; then return; fi
-  echo "==> Installing git-delta"
-  local tmp
-  tmp="$(mktemp -d)"
-  ( cd "$tmp" \
-    && wget -q https://github.com/dandavison/delta/releases/download/0.6.0/git-delta_0.6.0_amd64.deb \
-    && sudo dpkg -i git-delta_0.6.0_amd64.deb )
-  rm -rf "$tmp"
+install_brew_bundle() {
+  echo "==> Installing Brewfile bundle"
+  brew bundle --file="$SCRIPT_DIR/Brewfile"
 }
 
 mkdir -p ~/.config
@@ -50,12 +38,12 @@ mkdir -p ~/.config
 case "$(uname)" in
   Darwin)
     install_homebrew
-    install_fish_mac
+    install_brew_bundle
     ;;
   Linux)
-    install_fish_linux
-    install_starship_linux
-    install_delta_linux
+    has brew || install_linux_prereqs
+    install_homebrew
+    install_brew_bundle
     ;;
   *)
     echo "Unsupported OS: $(uname)" >&2

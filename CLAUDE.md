@@ -8,9 +8,10 @@ Personal dotfiles for macOS (primary) and Linux. Configuration is kept under `li
 
 ## Install / uninstall
 
-- `./install` — idempotent bootstrap. On macOS installs Homebrew (if missing) then fish; on Linux installs fish via apt plus starship and git-delta. Each tool is only installed if its command isn't already on `PATH`. Then pipes `yes |` into `rake install:configuration_files` to auto-confirm symlink overwrites.
-- `./uninstall` — runs `rake uninstall`, which removes any symlink in `~` that points into this repo's `lib/`.
+- `./install` — idempotent bootstrap. Installs Homebrew (if missing) on both macOS and Linux (apt prereqs first on Linux), then runs `brew bundle` against the repo's `Brewfile`, then pipes `yes |` into `rake install:configuration_files` to auto-confirm symlink overwrites.
+- `./uninstall` — runs `rake uninstall`, which removes any symlink in `~` that points into this repo's `lib/`. Does NOT uninstall brew packages.
 - `rake install:configuration_files` — the core symlink task; interactive unless piped `yes`.
+- `Brewfile` — curated dev tool list; `brew bundle` only installs what's missing. `kotlin`, `ktor`, `crystal` are mac-only via `if: OS.mac?`. Regenerate a snapshot with `brew bundle dump --force --file=Brewfile` but note that dumps everything on the system, including hobby/personal tools — the tracked file is intentionally curated.
 
 ## Symlink convention (Rakefile:4–11)
 
