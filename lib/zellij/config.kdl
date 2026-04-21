@@ -1,0 +1,11 @@
+default_mode "locked"
+theme "monokai-pro-ristretto"
+
+keybinds {
+    locked {
+        bind "Alt h" "Alt Left"  { MoveFocus "Left"; }
+        bind "Alt j" "Alt Down"  { MoveFocus "Down"; }
+        bind "Alt k" "Alt Up"    { MoveFocus "Up"; }
+        bind "Alt l" "Alt Right" { MoveFocus "Right"; }
+    }
+}

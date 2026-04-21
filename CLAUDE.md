@@ -17,7 +17,7 @@ Personal dotfiles for macOS (primary) and Linux. Configuration is kept under `li
 
 `ConfigurationFile#target` decides where each entry in `lib/` lands:
 
-- Names ending in `fish` or `nvim` → `~/.config/<name>` (XDG-style, e.g. `lib/fish` → `~/.config/fish`, `lib/nvim` → `~/.config/nvim`).
+- Names ending in `fish`, `nvim`, or `zellij` → `~/.config/<name>` (XDG-style, e.g. `lib/fish` → `~/.config/fish`, `lib/nvim` → `~/.config/nvim`, `lib/zellij` → `~/.config/zellij`).
 - Everything else → `~/.<name>` (e.g. `lib/zshrc` → `~/.zshrc`, `lib/gitconfig` → `~/.gitconfig`).
 
 When adding a new dotfile, drop it directly into `lib/` — the Rakefile globs `lib/*` and handles the rest. If the target tool expects its config under `~/.config/<name>`, extend the `case source` branch in the Rakefile. Don't nest new configs inside subdirectories unless the target tool expects a directory.

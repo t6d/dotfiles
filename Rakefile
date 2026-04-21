@@ -4,7 +4,7 @@ module Helpers
   ConfigurationFile = Struct.new(:source) do
     def target
       case source
-      when /fish$/, /nvim$/
+      when /fish$/, /nvim$/, /zellij$/
         File.expand_path(File.join("~/.config", File.basename(source)))
       else
         File.expand_path(File.join("~/", ".%s" % File.basename(source)))

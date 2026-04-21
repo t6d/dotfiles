@@ -1,0 +1,15 @@
+themes {
+    monokai-pro-ristretto {
+        fg      "#fff1f3"
+        bg      "#2c2525"
+        black   "#2c2525"
+        red     "#fd6883"
+        green   "#adda78"
+        yellow  "#f9cc6c"
+        blue    "#85dacc"
+        magenta "#a8a9eb"
+        cyan    "#85dacc"
+        white   "#fff1f3"
+        orange  "#f38d70"
+    }
+}
