@@ -1,11 +1,3 @@
 .DS_Store
 .netrwhist
 *.swp
-
-tags
-lib/vim/.*
-lib/vim/bundle/*
-lib/vim/UltiSnips/
-lib/vim/spell/
-lib/vim/sessions/
-lib/vim/vendor/

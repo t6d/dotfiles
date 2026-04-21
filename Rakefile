@@ -4,7 +4,7 @@ module Helpers
   ConfigurationFile = Struct.new(:source) do
     def target
       case source
-      when /fish$/
+      when /fish$/, /nvim$/
         File.expand_path(File.join("~/.config", File.basename(source)))
       else
         File.expand_path(File.join("~/", ".%s" % File.basename(source)))
@@ -16,7 +16,7 @@ module Helpers
     end
 
     def remove
-      return unless exists?
+      return unless exist?
 
       if File.directory?(source)
         FileUtils.rm_r(target)
@@ -25,8 +25,8 @@ module Helpers
       end
     end
 
-    def exists?
-      File.exists?(target)
+    def exist?
+      File.exist?(target)
     end
   end
 
@@ -62,13 +62,13 @@ end
 
 include Helpers
 
-desc "Symlink configuration files, setup Oh My ZSH!, and install vim plugins"
-task install: ["install:configuration_files", "install:vim_plugins"]
+desc "Symlink configuration files and setup Oh My ZSH!"
+task install: ["install:configuration_files"]
 
 namespace :install do
   task :configuration_files do
     each_configuration_file do |file|
-      next if file.exists? && !ask("Replace #{file.target}?")
+      next if file.exist? && !ask("Replace #{file.target}?")
       file.remove
       file.symlink
     end
@@ -76,10 +76,6 @@ namespace :install do
 
   task :oh_my_zsh do
     sh 'KEEP_ZSHRC=yes sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"'
-  end
-
-  task :vim_plugins do
-    sh 'vim +PlugInstall +qall'
   end
 end
 
