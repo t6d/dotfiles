@@ -1,1 +1,1 @@
-set -xg EDITOR vim
+set -xg EDITOR nvim
